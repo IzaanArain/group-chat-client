@@ -1,13 +1,15 @@
-import React from 'react'
+import React from "react";
+import Auth from "../components/Auth";
+import Container from "react-bootstrap/Container";
 
 const Home = () => {
   return (
-   <>
-   <div className="home">
-    <h1>Home Page</h1>
-   </div>
-   </>
-  )
-}
+    <>
+      <Container>
+        <Auth />
+      </Container>
+    </>
+  );
+};
 
-export default Home
+export default Home;
