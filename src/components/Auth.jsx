@@ -29,8 +29,9 @@ const Auth = () => {
           >
             {({ handleSubmit, handleChange, values, touched, errors }) => (
               <Form noValidate onSubmit={handleSubmit}>
-                <Row className="mb-3">
-                  <Form.Group as={Col} md="6" controlId="Email">
+                {/* <Row className="mb-3" md={1} lg={1}> */}
+                <Row className="mb-4">
+                  <Form.Group as={Col}  controlId="Email">
                     <Form.Label>Email</Form.Label>
                     <InputGroup hasValidation>
                       <Form.Control
@@ -41,7 +42,6 @@ const Auth = () => {
                         value={values.email}
                         onChange={handleChange}
                         isInvalid={!!errors.email}
-                        pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/"
                       />
                       <Form.Control.Feedback type="invalid">
                         {errors.email}
@@ -49,7 +49,7 @@ const Auth = () => {
                     </InputGroup>
                   </Form.Group>
 
-                  <Form.Group as={Col} md="6" controlId="Password">
+                  <Form.Group as={Col}  controlId="Password">
                     <Form.Label>Password</Form.Label>
                     <InputGroup hasValidation>
                       <Form.Control
@@ -60,7 +60,6 @@ const Auth = () => {
                         value={values.password}
                         onChange={handleChange}
                         isInvalid={!!errors.password}
-                        pattern=" /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/"
                       />
                       <Form.Control.Feedback type="invalid">
                         {errors.password}
@@ -68,7 +67,7 @@ const Auth = () => {
                     </InputGroup>
                   </Form.Group>
                 </Row>
-                <Button type="submit">Submit form</Button>
+                <Button type="submit" as={Col} >Submit form</Button>
               </Form>
             )}
           </Formik>

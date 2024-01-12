@@ -10,22 +10,22 @@ const Home = () => {
   return (
     <>
     <Container>
-        <Row className="d-flex justify-content-center align-items-center p-md-5">
-          <Col lg={6}>
+        <Row>  
+          <Col>
             <Auth />
           </Col>
         </Row>
-        <Row xs={1} md={2} lg={3} xl={3} xxl={4}>
+        {/* <Row xs={1} md={2} lg={3} xl={3} xxl={4} className="b">
          {
           arr.map((ele,i)=>{
             return (
-              <Col key={i} className="bg-primary m-2">
-                <h1>{ele}</h1>
+              <Col key={i}>
+                <h1 className="bg-primary">{ele}</h1>
               </Col>
             );
           })
          }
-        </Row>
+        </Row> */}
       </Container>
     </>
   );
