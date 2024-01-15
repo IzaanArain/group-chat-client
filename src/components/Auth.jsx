@@ -31,7 +31,7 @@ const Auth = () => {
               <Form noValidate onSubmit={handleSubmit}>
                 {/* <Row className="mb-3" md={1} lg={1}> */}
                 <Row className="mb-4">
-                  <Form.Group as={Col}  controlId="Email">
+                  <Form.Group as={Col} lg={12}controlId="Email">
                     <Form.Label>Email</Form.Label>
                     <InputGroup hasValidation>
                       <Form.Control
@@ -49,7 +49,7 @@ const Auth = () => {
                     </InputGroup>
                   </Form.Group>
 
-                  <Form.Group as={Col}  controlId="Password">
+                  <Form.Group as={Col} lg={12} controlId="Password">
                     <Form.Label>Password</Form.Label>
                     <InputGroup hasValidation>
                       <Form.Control
@@ -67,7 +67,7 @@ const Auth = () => {
                     </InputGroup>
                   </Form.Group>
                 </Row>
-                <Button type="submit" as={Col} >Submit form</Button>
+                <Button type="submit" as={Col} lg={12} >Submit form</Button>
               </Form>
             )}
           </Formik>

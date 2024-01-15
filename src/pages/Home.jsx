@@ -9,9 +9,9 @@ const Home = () => {
   const [arr,setArr]=useState([1,2,3,4])
   return (
     <>
-    <Container>
-        <Row>  
-          <Col>
+    <Container className="bg-danger">
+        <Row className="d-flex justify-content-center align-items-center bg-info">  
+          <Col lg={6} className="bg-primary">
             <Auth />
           </Col>
         </Row>
