@@ -6,6 +6,8 @@ import * as formik from "formik";
 import * as yup from "yup";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
+import { TfiEmail } from "react-icons/tfi";
+import { RiLockPasswordLine } from "react-icons/ri";
 
 const SignUp = () => {
   const { Formik } = formik;
@@ -48,8 +50,9 @@ const SignUp = () => {
               {/* <Row className="mb-3" md={1} lg={1}> */}
               <Row className="mb-4 px-4">
                 <Form.Group as={Col} lg={12} controlId="email">
-                  <Form.Label>Email</Form.Label>
+                  <Form.Label className="my-2">Email</Form.Label>
                   <InputGroup hasValidation>
+                  <InputGroup.Text id="basic-addon1"><TfiEmail /></InputGroup.Text>
                     <Form.Control
                       type="email"
                       placeholder=""
@@ -66,8 +69,9 @@ const SignUp = () => {
                 </Form.Group>
 
                 <Form.Group as={Col} lg={12} controlId="password">
-                  <Form.Label>Password</Form.Label>
+                  <Form.Label className="my-2">Password</Form.Label>
                   <InputGroup hasValidation>
+                  <InputGroup.Text id="basic-addon1"><RiLockPasswordLine /></InputGroup.Text>
                     <Form.Control
                       type="password"
                       placeholder=""
@@ -83,9 +87,10 @@ const SignUp = () => {
                   </InputGroup>
                 </Form.Group>
 
-                <Form.Group as={Col} lg={12} controlId="confirmPassword">
-                  <Form.Label>Confirm Password</Form.Label>
+                <Form.Group as={Col} lg={12}  controlId="confirmPassword">
+                  <Form.Label className="my-2">Confirm Password</Form.Label>
                   <InputGroup hasValidation>
+                  <InputGroup.Text id="basic-addon1"><RiLockPasswordLine /></InputGroup.Text>
                     <Form.Control
                       type="password"
                       placeholder=""
@@ -104,7 +109,7 @@ const SignUp = () => {
               <Row className="mb-4 px-4">
                 <Col>
                   <Button type="submit" style={{ width: "100%" }} className="">
-                    Login
+                    Sign Up
                   </Button>
                 </Col>
               </Row>

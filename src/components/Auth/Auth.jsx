@@ -18,7 +18,7 @@ const Auth = () => {
         <Container fluid="md">
           <Row className="d-flex flex-column justify-content-center align-items-center">
             <Col lg={6}>
-              <Card className="my-5 text-center p-3">
+              <Card className="shadow my-5 text-center p-3">
                 <Card.Title
                   className="display-6"
                   style={{ fontFamily: "Work sans" }}
@@ -28,7 +28,7 @@ const Auth = () => {
               </Card>
             </Col>
             <Col lg={6} className="">
-              <Card>
+              <Card className="shadow">
                 <Card.Body>
                   <Tabs variant="soft-rounded" colorScheme="blue">
                     <TabList>

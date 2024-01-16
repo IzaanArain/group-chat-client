@@ -6,6 +6,8 @@ import * as formik from "formik";
 import * as yup from "yup";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
+import { TfiEmail } from "react-icons/tfi";
+import { RiLockPasswordLine } from "react-icons/ri";
 
 const Login = () => {
     const { Formik } = formik;
@@ -38,8 +40,9 @@ const Login = () => {
               {/* <Row className="mb-3" md={1} lg={1}> */}
               <Row className="mb-4 px-4">
                 <Form.Group as={Col} lg={12} controlId="loginEmail">
-                  <Form.Label>Email</Form.Label>
+                  <Form.Label className="my-2">Email</Form.Label>
                   <InputGroup hasValidation>
+                  <InputGroup.Text id="basic-addon1"><TfiEmail /></InputGroup.Text>
                     <Form.Control
                       type="email"
                       placeholder=""
@@ -56,8 +59,9 @@ const Login = () => {
                 </Form.Group>
 
                 <Form.Group as={Col} lg={12} controlId="loginPassword">
-                  <Form.Label>Password</Form.Label>
+                  <Form.Label className="my-2">Password</Form.Label>
                   <InputGroup hasValidation>
+                  <InputGroup.Text id="basic-addon1"><RiLockPasswordLine /></InputGroup.Text>
                     <Form.Control
                       type="password"
                       placeholder=""
