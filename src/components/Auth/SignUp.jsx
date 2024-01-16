@@ -1,4 +1,4 @@
-import React from "react";
+import {useState} from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -8,10 +8,13 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 import { TfiEmail } from "react-icons/tfi";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa6";
 
 const SignUp = () => {
   const { Formik } = formik;
-
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const SubmitForm=(values,{resetForm})=>{
     // e.preventDefault();
     console.log("values: ",values)
@@ -74,7 +77,7 @@ const SignUp = () => {
                   <InputGroup hasValidation>
                   <InputGroup.Text id="basic-addon1"><RiLockPasswordLine /></InputGroup.Text>
                     <Form.Control
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       placeholder=""
                       aria-describedby="inputGroupPassword"
                       name="password"
@@ -82,6 +85,14 @@ const SignUp = () => {
                       onChange={handleChange}
                       isInvalid={!!errors.password}
                     />
+                     <InputGroup.Text>
+                      <button type="button" onClick={(e)=>{
+                        e.preventDefault()
+                        setShowPassword(!showPassword)
+                      }}>
+                        {showPassword ?   <FaRegEyeSlash style={{ fontSize: "1.5rem" }}/>  : <FaRegEye style={{ fontSize: "1.5rem" }}/>}
+                      </button>
+                    </InputGroup.Text>
                     <Form.Control.Feedback type="invalid">
                       {errors.password}
                     </Form.Control.Feedback>
@@ -93,7 +104,7 @@ const SignUp = () => {
                   <InputGroup hasValidation>
                   <InputGroup.Text id="basic-addon1"><RiLockPasswordLine /></InputGroup.Text>
                     <Form.Control
-                      type="password"
+                      type={showConfirmPassword ? "text" : "password"}
                       placeholder=""
                       aria-describedby="inputGroupConfirmPassword"
                       name="confirmPassword"
@@ -101,6 +112,14 @@ const SignUp = () => {
                       onChange={handleChange}
                       isInvalid={!!errors.confirmPassword}
                     />
+                    <InputGroup.Text>
+                      <button type="button" onClick={(e)=>{
+                        e.preventDefault()
+                        setShowConfirmPassword(!showConfirmPassword)
+                      }}>
+                        {showConfirmPassword ?   <FaRegEyeSlash style={{ fontSize: "1.5rem" }}/>  : <FaRegEye style={{ fontSize: "1.5rem" }}/>}
+                      </button>
+                    </InputGroup.Text>
                     <Form.Control.Feedback type="invalid">
                       {errors.confirmPassword}
                     </Form.Control.Feedback>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -8,23 +8,26 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 import { TfiEmail } from "react-icons/tfi";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa6";
 
 const Login = () => {
-    const { Formik } = formik;
+  const { Formik } = formik;
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const SubmitForm = (values, { resetForm }) => {
+    // e.preventDefault();
+    console.log("values: ", values);
+    resetForm();
+  };
 
-    const SubmitForm=(values,{resetForm})=>{
-      // e.preventDefault();
-      console.log("values: ",values)
-      resetForm()
-    }
-    
   const schema = yup.object().shape({
     loginEmail: yup
       .string()
       .email("Invalid email")
       .max(50, "Too Long!")
       .required("Required"),
-      loginPassword: yup
+    loginPassword: yup
       .string()
       .min(8, "Too Short!")
       .max(50, "Too Long!")
@@ -35,7 +38,9 @@ const Login = () => {
       <div>
         <Formik
           validationSchema={schema}
-          onSubmit={(values,{resetForm})=>SubmitForm(values,{resetForm})}
+          onSubmit={(values, { resetForm }) =>
+            SubmitForm(values, { resetForm })
+          }
           initialValues={{
             loginEmail: "",
             loginPassword: "",
@@ -48,7 +53,9 @@ const Login = () => {
                 <Form.Group as={Col} lg={12} controlId="loginEmail">
                   <Form.Label className="my-2">Email</Form.Label>
                   <InputGroup hasValidation>
-                  <InputGroup.Text id="basic-addon1"><TfiEmail /></InputGroup.Text>
+                    <InputGroup.Text id="basic-addon1">
+                      <TfiEmail />
+                    </InputGroup.Text>
                     <Form.Control
                       type="email"
                       placeholder=""
@@ -67,9 +74,11 @@ const Login = () => {
                 <Form.Group as={Col} lg={12} controlId="loginPassword">
                   <Form.Label className="my-2">Password</Form.Label>
                   <InputGroup hasValidation>
-                  <InputGroup.Text id="basic-addon1"><RiLockPasswordLine /></InputGroup.Text>
+                    <InputGroup.Text id="basic-addon1">
+                      <RiLockPasswordLine />
+                    </InputGroup.Text>
                     <Form.Control
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       placeholder=""
                       aria-describedby="inputGroupPassword"
                       name="loginPassword"
@@ -77,6 +86,14 @@ const Login = () => {
                       onChange={handleChange}
                       isInvalid={!!errors.loginPassword}
                     />
+                    <InputGroup.Text>
+                      <button type="button" onClick={(e)=>{
+                        e.preventDefault()
+                        setShowPassword(!showPassword)
+                      }}>
+                        {showPassword ?   <FaRegEyeSlash style={{ fontSize: "1.5rem" }}/>  : <FaRegEye style={{ fontSize: "1.5rem" }}/>}
+                      </button>
+                    </InputGroup.Text>
                     <Form.Control.Feedback type="invalid">
                       {errors.loginPassword}
                     </Form.Control.Feedback>
