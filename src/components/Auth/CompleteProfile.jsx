@@ -44,7 +44,7 @@ const CompleteProfile = () => {
           <Col lg={6}>
             <Card className="shadow my-5 d-flex align-items-center">
               <Card.Img
-                className="rounded-circle shadow-4-strong mt-4"
+                className="rounded-circle shadow border mt-4"
                 variant="top"
                 src={profileImage.length >= 1 ? profileImage : defautImage}
                 style={{ width: "200px", height: "200px" }}
