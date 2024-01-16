@@ -7,9 +7,13 @@ import * as yup from "yup";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 
-const Login = () => {
-    const { Formik } = formik;
+const SignUp = () => {
+  const { Formik } = formik;
 
+  const SubmitForm=(values)=>{
+    // e.preventDefault();
+    console.log("values: ",values)
+  }
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -21,30 +25,36 @@ const Login = () => {
       .min(8, "Too Short!")
       .max(50, "Too Long!")
       .required("Required"),
+      confirmPassword: yup
+      .string()
+      .min(8, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
   });
   return (
     <>
       <div>
         <Formik
           validationSchema={schema}
-          onSubmit={(values)=>console.log("values",values)}
+          onSubmit={(values)=>SubmitForm(values)}
           initialValues={{
             email: "",
             password: "",
+            confirmPassword: "",
           }}
         >
           {({ handleSubmit, handleChange, values, touched, errors }) => (
             <Form noValidate onSubmit={handleSubmit}>
               {/* <Row className="mb-3" md={1} lg={1}> */}
               <Row className="mb-4 px-4">
-                <Form.Group as={Col} lg={12} controlId="loginEmail">
+                <Form.Group as={Col} lg={12} controlId="email">
                   <Form.Label>Email</Form.Label>
                   <InputGroup hasValidation>
                     <Form.Control
                       type="email"
                       placeholder=""
                       aria-describedby="inputGroupEmail"
-                      name="loginEmail"
+                      name="email"
                       value={values.email}
                       onChange={handleChange}
                       isInvalid={!!errors.email}
@@ -55,20 +65,38 @@ const Login = () => {
                   </InputGroup>
                 </Form.Group>
 
-                <Form.Group as={Col} lg={12} controlId="loginPassword">
+                <Form.Group as={Col} lg={12} controlId="password">
                   <Form.Label>Password</Form.Label>
                   <InputGroup hasValidation>
                     <Form.Control
                       type="password"
                       placeholder=""
                       aria-describedby="inputGroupPassword"
-                      name="loginPassword"
+                      name="password"
                       value={values.password}
                       onChange={handleChange}
                       isInvalid={!!errors.password}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.password}
+                    </Form.Control.Feedback>
+                  </InputGroup>
+                </Form.Group>
+
+                <Form.Group as={Col} lg={12} controlId="confirmPassword">
+                  <Form.Label>Confirm Password</Form.Label>
+                  <InputGroup hasValidation>
+                    <Form.Control
+                      type="password"
+                      placeholder=""
+                      aria-describedby="inputGroupConfirmPassword"
+                      name="confirmPassword"
+                      value={values.confirmPassword}
+                      onChange={handleChange}
+                      isInvalid={!!errors.confirmPassword}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.confirmPassword}
                     </Form.Control.Feedback>
                   </InputGroup>
                 </Form.Group>
@@ -88,4 +116,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

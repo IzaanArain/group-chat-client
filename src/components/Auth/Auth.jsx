@@ -10,7 +10,7 @@ import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import Login from "./Login";
-
+import SignUp from "./SignUp";
 const Auth = () => {
   return (
     <>
@@ -30,17 +30,17 @@ const Auth = () => {
             <Col lg={6} className="">
               <Card>
                 <Card.Body>
-                  <Tabs variant="soft-rounded" colorScheme="green">
+                  <Tabs variant="soft-rounded" colorScheme="blue">
                     <TabList>
                       <Tab width="50%">Login</Tab>
-                      <Tab width="50%">SignUp</Tab>
+                      <Tab width="50%">Sign Up</Tab>
                     </TabList>
                     <TabPanels>
                       <TabPanel>
                         <Login />
                       </TabPanel>
                       <TabPanel>
-                        <p>two!</p>
+                        <SignUp />
                       </TabPanel>
                     </TabPanels>
                   </Tabs>
