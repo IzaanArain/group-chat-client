@@ -12,21 +12,19 @@ import { TfiEmail } from "react-icons/tfi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
-
+import defautImage from "../../assets/default-image.jpg";
 const CompleteProfile = () => {
   const { Formik } = formik;
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [profileImage, setProfileImage] = useState([]);
   const SubmitForm = (values, { resetForm }) => {
     // e.preventDefault();
     console.log("values: ", values);
     resetForm();
   };
   const schema = yup.object().shape({
-    name: yup
-      .string()
-      .max(50, "Too Long!")
-      .required("Required"),
+    name: yup.string().max(50, "Too Long!").required("Required"),
     password: yup
       .string()
       .min(8, "Too Short!")
@@ -38,12 +36,22 @@ const CompleteProfile = () => {
       .max(50, "Too Long!")
       .required("Required"),
   });
+
   return (
     <>
       <Container fluid="md">
-        <Row  className="d-flex flex-column justify-content-center align-items-center">
+        <Row className="d-flex flex-column justify-content-center align-items-center">
           <Col lg={6}>
-            <Card>
+            <Card className="shadow my-5 d-flex align-items-center">
+              <Card.Img
+                className="rounded-circle shadow-4-strong mt-4"
+                variant="top"
+                src={profileImage.length >= 1 ? profileImage : defautImage}
+                style={{ width: "200px", height: "200px" }}
+                // onError={(e)=>{
+                //   e.target.src=defautImage
+                // }}
+              />
               <Card.Body>
                 <div>
                   <Formik
@@ -179,7 +187,7 @@ const CompleteProfile = () => {
                               style={{ width: "100%" }}
                               className=""
                             >
-                              Sign Up
+                              Update
                             </Button>
                           </Col>
                         </Row>

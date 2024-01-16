@@ -3,8 +3,8 @@
 .App{
     background-color: azure;
     min-height: 100vh;
-    /* display: flex;
-    justify-content: center; */
+    /* display: flex; */
+    /* justify-content: center; */
 }
 .auth-section{
     background-color: azure;
