@@ -13,12 +13,12 @@ const Login = () => {
     const { Formik } = formik;
 
   const schema = yup.object().shape({
-    email: yup
+    loginEmail: yup
       .string()
       .email("Invalid email")
       .max(50, "Too Long!")
       .required("Required"),
-    password: yup
+      loginPassword: yup
       .string()
       .min(8, "Too Short!")
       .max(50, "Too Long!")
@@ -31,8 +31,8 @@ const Login = () => {
           validationSchema={schema}
           onSubmit={(values)=>console.log("values",values)}
           initialValues={{
-            email: "",
-            password: "",
+            loginEmail: "",
+            loginPassword: "",
           }}
         >
           {({ handleSubmit, handleChange, values, touched, errors }) => (
@@ -48,12 +48,12 @@ const Login = () => {
                       placeholder=""
                       aria-describedby="inputGroupEmail"
                       name="loginEmail"
-                      value={values.email}
+                      value={values.loginEmail}
                       onChange={handleChange}
-                      isInvalid={!!errors.email}
+                      isInvalid={!!errors.loginEmail}
                     />
                     <Form.Control.Feedback type="invalid">
-                      {errors.email}
+                      {errors.loginEmail}
                     </Form.Control.Feedback>
                   </InputGroup>
                 </Form.Group>
@@ -67,12 +67,12 @@ const Login = () => {
                       placeholder=""
                       aria-describedby="inputGroupPassword"
                       name="loginPassword"
-                      value={values.password}
+                      value={values.loginPassword}
                       onChange={handleChange}
-                      isInvalid={!!errors.password}
+                      isInvalid={!!errors.loginPassword}
                     />
                     <Form.Control.Feedback type="invalid">
-                      {errors.password}
+                      {errors.loginPassword}
                     </Form.Control.Feedback>
                   </InputGroup>
                 </Form.Group>

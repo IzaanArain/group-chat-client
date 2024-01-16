@@ -12,9 +12,10 @@ import { RiLockPasswordLine } from "react-icons/ri";
 const SignUp = () => {
   const { Formik } = formik;
 
-  const SubmitForm=(values)=>{
+  const SubmitForm=(values,{resetForm})=>{
     // e.preventDefault();
     console.log("values: ",values)
+    resetForm()
   }
   const schema = yup.object().shape({
     email: yup
@@ -38,7 +39,7 @@ const SignUp = () => {
       <div>
         <Formik
           validationSchema={schema}
-          onSubmit={(values)=>SubmitForm(values)}
+          onSubmit={(values,{resetForm})=>SubmitForm(values,{resetForm})}
           initialValues={{
             email: "",
             password: "",
