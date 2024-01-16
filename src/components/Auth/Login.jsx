@@ -64,6 +64,7 @@ const Login = () => {
                       value={values.loginEmail}
                       onChange={handleChange}
                       isInvalid={!!errors.loginEmail}
+                      required
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.loginEmail}
@@ -85,6 +86,7 @@ const Login = () => {
                       value={values.loginPassword}
                       onChange={handleChange}
                       isInvalid={!!errors.loginPassword}
+                      required
                     />
                     <InputGroup.Text>
                       <button type="button" onClick={(e)=>{

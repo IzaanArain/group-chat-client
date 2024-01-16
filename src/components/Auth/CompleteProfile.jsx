@@ -11,7 +11,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
 
-const SignUp = () => {
+const CompleteProfile = () => {
   const { Formik } = formik;
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -65,7 +65,6 @@ const SignUp = () => {
                       value={values.email}
                       onChange={handleChange}
                       isInvalid={!!errors.email}
-                      required
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.email}
@@ -85,7 +84,6 @@ const SignUp = () => {
                       value={values.password}
                       onChange={handleChange}
                       isInvalid={!!errors.password}
-                      required
                     />
                      <InputGroup.Text>
                       <button type="button" onClick={(e)=>{
@@ -113,7 +111,6 @@ const SignUp = () => {
                       value={values.confirmPassword}
                       onChange={handleChange}
                       isInvalid={!!errors.confirmPassword}
-                      required
                     />
                     <InputGroup.Text>
                       <button type="button" onClick={(e)=>{
@@ -144,4 +141,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default CompleteProfile;
