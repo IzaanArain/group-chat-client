@@ -75,6 +75,7 @@ const CompleteProfile = () => {
                       <Form noValidate onSubmit={handleSubmit}>
                         {/* <Row className="mb-3" md={1} lg={1}> */}
                         <Row className="mb-4 px-4">
+
                           <Form.Group as={Col} lg={12} controlId="name">
                             <Form.Label className="my-2">Name</Form.Label>
                             <InputGroup hasValidation>
@@ -99,9 +100,6 @@ const CompleteProfile = () => {
                           <Form.Group as={Col} lg={12} controlId="password">
                             <Form.Label className="my-2">Password</Form.Label>
                             <InputGroup hasValidation>
-                              <InputGroup.Text id="basic-addon1">
-                                <RiLockPasswordLine />
-                              </InputGroup.Text>
                               <Form.Control
                                 type={showPassword ? "text" : "password"}
                                 placeholder=""
@@ -111,23 +109,6 @@ const CompleteProfile = () => {
                                 onChange={handleChange}
                                 isInvalid={!!errors.password}
                               />
-                              <InputGroup.Text>
-                                <button
-                                  type="button"
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    setShowPassword(!showPassword);
-                                  }}
-                                >
-                                  {showPassword ? (
-                                    <FaRegEyeSlash
-                                      style={{ fontSize: "1.5rem" }}
-                                    />
-                                  ) : (
-                                    <FaRegEye style={{ fontSize: "1.5rem" }} />
-                                  )}
-                                </button>
-                              </InputGroup.Text>
                               <Form.Control.Feedback type="invalid">
                                 {errors.password}
                               </Form.Control.Feedback>
@@ -143,9 +124,6 @@ const CompleteProfile = () => {
                               Confirm Password
                             </Form.Label>
                             <InputGroup hasValidation>
-                              <InputGroup.Text id="basic-addon1">
-                                <RiLockPasswordLine />
-                              </InputGroup.Text>
                               <Form.Control
                                 type={showConfirmPassword ? "text" : "password"}
                                 placeholder=""
@@ -155,30 +133,12 @@ const CompleteProfile = () => {
                                 onChange={handleChange}
                                 isInvalid={!!errors.confirmPassword}
                               />
-                              <InputGroup.Text>
-                                <button
-                                  type="button"
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    setShowConfirmPassword(
-                                      !showConfirmPassword
-                                    );
-                                  }}
-                                >
-                                  {showConfirmPassword ? (
-                                    <FaRegEyeSlash
-                                      style={{ fontSize: "1.5rem" }}
-                                    />
-                                  ) : (
-                                    <FaRegEye style={{ fontSize: "1.5rem" }} />
-                                  )}
-                                </button>
-                              </InputGroup.Text>
                               <Form.Control.Feedback type="invalid">
                                 {errors.confirmPassword}
                               </Form.Control.Feedback>
                             </InputGroup>
                           </Form.Group>
+
                         </Row>
                         <Row className="mb-4 px-4">
                           <Col>
