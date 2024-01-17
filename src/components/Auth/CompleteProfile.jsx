@@ -42,7 +42,8 @@ const CompleteProfile = () => {
       <Container fluid="md">
         <Row className="d-flex flex-column justify-content-center align-items-center">
           <Col lg={6}>
-            <Card className="shadow my-5 d-flex align-items-center">
+          {/* d-flex align-items-center */}
+            <Card className="shadow my-5 ">
               <Card.Img
                 className="rounded-circle shadow border mt-4"
                 variant="top"
@@ -96,52 +97,10 @@ const CompleteProfile = () => {
                               </Form.Control.Feedback>
                             </InputGroup>
                           </Form.Group>
-
-                          <Form.Group as={Col} lg={12} controlId="password">
-                            <Form.Label className="my-2">Password</Form.Label>
-                            <InputGroup hasValidation>
-                              <Form.Control
-                                type={showPassword ? "text" : "password"}
-                                placeholder=""
-                                aria-describedby="inputGroupPassword"
-                                name="password"
-                                value={values.password}
-                                onChange={handleChange}
-                                isInvalid={!!errors.password}
-                              />
-                              <Form.Control.Feedback type="invalid">
-                                {errors.password}
-                              </Form.Control.Feedback>
-                            </InputGroup>
-                          </Form.Group>
-
-                          <Form.Group
-                            as={Col}
-                            lg={12}
-                            controlId="confirmPassword"
-                          >
-                            <Form.Label className="my-2">
-                              Confirm Password
-                            </Form.Label>
-                            <InputGroup hasValidation>
-                              <Form.Control
-                                type={showConfirmPassword ? "text" : "password"}
-                                placeholder=""
-                                aria-describedby="inputGroupConfirmPassword"
-                                name="confirmPassword"
-                                value={values.confirmPassword}
-                                onChange={handleChange}
-                                isInvalid={!!errors.confirmPassword}
-                              />
-                              <Form.Control.Feedback type="invalid">
-                                {errors.confirmPassword}
-                              </Form.Control.Feedback>
-                            </InputGroup>
-                          </Form.Group>
-
+                          
                         </Row>
                         <Row className="mb-4 px-4">
-                          <Col>
+                          <Col lg={12}>
                             <Button
                               type="submit"
                               style={{ width: "100%" }}
