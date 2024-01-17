@@ -42,79 +42,120 @@ const CompleteProfile = () => {
       <Container fluid="md">
         <Row className="d-flex flex-column justify-content-center align-items-center">
           <Col lg={6}>
-          {/* d-flex align-items-center */}
+            {/* d-flex align-items-center */}
             <Card className="shadow my-5 ">
-              <Card.Img
-                className="rounded-circle shadow border mt-4"
-                variant="top"
-                src={profileImage.length >= 1 ? profileImage : defautImage}
-                style={{ width: "200px", height: "200px" }}
-                // onError={(e)=>{
-                //   e.target.src=defautImage
-                // }}
-              />
-              <Card.Body>
-                <div>
-                  <Formik
-                    validationSchema={schema}
-                    onSubmit={(values, { resetForm }) =>
-                      SubmitForm(values, { resetForm })
-                    }
-                    initialValues={{
-                      name: "",
-                      password: "",
-                      confirmPassword: "",
-                    }}
-                  >
-                    {({
-                      handleSubmit,
-                      handleChange,
-                      values,
-                      touched,
-                      errors,
-                    }) => (
-                      <Form noValidate onSubmit={handleSubmit}>
-                        {/* <Row className="mb-3" md={1} lg={1}> */}
-                        <Row className="mb-4 px-4">
+              <Row>
+                <Col className="d-flex justify-content-center">
+                  <Card.Img
+                    className="rounded-circle shadow border mt-4"
+                    variant="top"
+                    src={profileImage.length >= 1 ? profileImage : defautImage}
+                    style={{ width: "200px", height: "200px" }}
+                    // onError={(e)=>{
+                    //   e.target.src=defautImage
+                    // }}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Card.Body>
+                    <div>
+                      <Formik
+                        validationSchema={schema}
+                        onSubmit={(values, { resetForm }) =>
+                          SubmitForm(values, { resetForm })
+                        }
+                        initialValues={{
+                          name: "",
+                          password: "",
+                          confirmPassword: "",
+                        }}
+                      >
+                        {({
+                          handleSubmit,
+                          handleChange,
+                          values,
+                          touched,
+                          errors,
+                        }) => (
+                          <Form noValidate onSubmit={handleSubmit}>
+                            {/* <Row className="mb-3" md={1} lg={1}> */}
+                            <Row className="mb-4 px-4">
+                              
+                              <Form.Group as={Col} lg={12} controlId="name">
+                                <Form.Label className="my-2">Name</Form.Label>
+                                <InputGroup hasValidation>
+                                  <Form.Control
+                                    type="text"
+                                    placeholder="Please enter your name"
+                                    aria-describedby="inputGroupName"
+                                    name="name"
+                                    value={values.name}
+                                    onChange={handleChange}
+                                    isInvalid={!!errors.name}
+                                  />
+                                  <Form.Control.Feedback type="invalid">
+                                    {errors.name}
+                                  </Form.Control.Feedback>
+                                </InputGroup>
+                              </Form.Group>
 
-                          <Form.Group as={Col} lg={12} controlId="name">
-                            <Form.Label className="my-2">Name</Form.Label>
-                            <InputGroup hasValidation>
-                              {/* <InputGroup.Text id="basic-addon1">
-                                <TfiEmail />
-                              </InputGroup.Text> */}
-                              <Form.Control
-                                type="text"
-                                placeholder="Please enter your name"
-                                aria-describedby="inputGroupName"
-                                name="name"
-                                value={values.name}
-                                onChange={handleChange}
-                                isInvalid={!!errors.name}
-                              />
-                              <Form.Control.Feedback type="invalid">
-                                {errors.name}
-                              </Form.Control.Feedback>
-                            </InputGroup>
-                          </Form.Group>
-                          
-                        </Row>
-                        <Row className="mb-4 px-4">
-                          <Col lg={12}>
-                            <Button
-                              type="submit"
-                              style={{ width: "100%" }}
-                              className=""
-                            >
-                              Update
-                            </Button>
-                          </Col>
-                        </Row>
-                      </Form>
-                    )}
-                  </Formik>
-                </div>
-              </Card.Body>
+                              <Form.Group as={Col} lg={12} controlId="name">
+                                <Form.Label className="my-2">Name</Form.Label>
+                                <InputGroup hasValidation>
+                                  <Form.Control
+                                    type="text"
+                                    placeholder="Please enter your name"
+                                    aria-describedby="inputGroupName"
+                                    name="name"
+                                    value={values.name}
+                                    onChange={handleChange}
+                                    isInvalid={!!errors.name}
+                                  />
+                                  <Form.Control.Feedback type="invalid">
+                                    {errors.name}
+                                  </Form.Control.Feedback>
+                                </InputGroup>
+                              </Form.Group>
+
+                              <Form.Group as={Col} lg={12} controlId="name">
+                                <Form.Label className="my-2">Name</Form.Label>
+                                <InputGroup hasValidation>
+                                  <Form.Control
+                                    type="text"
+                                    placeholder="Please enter your name"
+                                    aria-describedby="inputGroupName"
+                                    name="name"
+                                    value={values.name}
+                                    onChange={handleChange}
+                                    isInvalid={!!errors.name}
+                                  />
+                                  <Form.Control.Feedback type="invalid">
+                                    {errors.name}
+                                  </Form.Control.Feedback>
+                                </InputGroup>
+                              </Form.Group>
+
+                            </Row>
+                            <Row className="mb-4 px-4">
+                              <Col lg={12}>
+                                <Button
+                                  type="submit"
+                                  style={{ width: "100%" }}
+                                  className=""
+                                >
+                                  Update
+                                </Button>
+                              </Col>
+                            </Row>
+                          </Form>
+                        )}
+                      </Formik>
+                    </div>
+                  </Card.Body>
+                </Col>
+              </Row>
             </Card>
           </Col>
         </Row>
