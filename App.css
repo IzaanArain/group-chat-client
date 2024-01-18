@@ -17,3 +17,8 @@
     background-position: center;
     /* background-repeat: no-repeat; */
 }
+
+#phoneInput{
+    border: 0.5px solid red;
+    border-radius: 0.3rem;
+}

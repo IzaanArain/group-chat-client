@@ -11,6 +11,7 @@ import Form from "react-bootstrap/Form";
 import defautImage from "../../assets/default-image.jpg";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 const CompleteProfile = () => {
   const [profileImage, setProfileImage] = useState([]);
@@ -20,23 +21,23 @@ const CompleteProfile = () => {
     resetForm();
   };
 
-  const phoneRegExp =
-    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+  const phoneRegExp = /^((\+[1-9]{1,4}[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/ 
+  
   const schema = yup.object().shape({
     name: yup.string().max(50, "Too Long!").required("Required"),
     phone: yup
       .string()
-      .min(11, "Too Short!")
-      .max(12, "Too Long!")
-      .matches(phoneRegExp, "Phone number is not valid")
+      .max(15,"Too Long!")
+      .min(11,"Too small")
+      // .matches(phoneRegExp, "Phone number is not valid")
       .required("Required"),
-      image: yup.mixed().required('Image is required'),
+    image: yup.mixed().required("Image is required"),
   });
   return (
     <>
       <Container fluid="md">
         <Row className="d-flex flex-column justify-content-center align-items-center">
-          <Col lg={4}>
+          <Col lg={6} xl={4}>
             {/* d-flex align-items-center */}
             <Card className="shadow my-5 ">
               <Row>
@@ -65,7 +66,7 @@ const CompleteProfile = () => {
                         initialValues={{
                           name: "",
                           phone: "",
-                          image: null
+                          image: null,
                         }}
                       >
                         {({
@@ -74,12 +75,11 @@ const CompleteProfile = () => {
                           values,
                           touched,
                           errors,
-                          setFieldValue
+                          setFieldValue,
                         }) => (
                           <Form noValidate onSubmit={handleSubmit}>
                             {/* <Row className="mb-3" md={1} lg={1}> */}
                             <Row className="mb-4 px-4">
-
                               <Form.Group as={Col} lg={12} controlId="name">
                                 <Form.Label className="my-2">Name</Form.Label>
                                 <InputGroup hasValidation>
@@ -102,8 +102,12 @@ const CompleteProfile = () => {
                                 <Form.Label className="my-2">
                                   Phone Number
                                 </Form.Label>
-                                <InputGroup hasValidation>
-                                  <Form.Control
+                                <InputGroup
+                                  hasValidation
+                                  className="d-flex align-items-center"
+                                  id={errors.phone && "phoneInput"}
+                                >
+                                  {/* <Form.Control
                                     type="tel"
                                     placeholder="Please enter your phone number"
                                     aria-describedby="inputGroupPhone"
@@ -111,40 +115,58 @@ const CompleteProfile = () => {
                                     value={values.phone}
                                     onChange={handleChange}
                                     isInvalid={!!errors.phone}
-                                  />
-                                  {/* <PhoneInput
-                                    placeholder="Enter phone number"
-                                    value={values.phone}
-                                    onChange={handleChange}
-                                    isInvalid={!!errors.phone}
                                   /> */}
-                                  <Form.Control.Feedback type="invalid">
+                                  {/* <Form.Control.Feedback type="invalid">
                                     {errors.phone}
-                                  </Form.Control.Feedback>
+                                  </Form.Control.Feedback> */}
+                                  <PhoneInput
+                                    autoComplete="on"
+                                    placeholder="Please enter your phone number"
+                                    value={values.phone}
+                                    onChange={(value) =>
+                                      setFieldValue("phone", value)
+                                    }
+                                    className="p-2 rounded"
+                                    style={{ width: "90%" }}
+                                  />
+                                  {errors.phone && (
+                                    <AiOutlineExclamationCircle className=" fs-5 text-end text-danger" />
+                                  )}
                                 </InputGroup>
+                                {errors.phone && (
+                                  <Form.Text className="text-danger">
+                                    {errors.phone}
+                                  </Form.Text>
+                                )}
                               </Form.Group>
 
                               <Form.Group as={Col} lg={12} controlId="image">
-                                <Form.Label className="my-2">Upload Image</Form.Label>
+                                <Form.Label className="my-2">
+                                  Upload Image
+                                </Form.Label>
                                 <InputGroup hasValidation>
                                   <Form.Control
                                     type="file"
                                     placeholder="Please upload image"
-                                    multiple
+                                    // multiple
                                     aria-describedby="inputGroupImage"
                                     onChange={(event) => {
-                                      setProfileImage(event.currentTarget.files)
-                                      setFieldValue("image", event.currentTarget.files);
+                                      setProfileImage(
+                                        event.currentTarget.files
+                                      );
+                                      setFieldValue(
+                                        "image",
+                                        event.currentTarget.files
+                                      );
                                     }}
                                     name="image"
                                     isInvalid={!!errors.image}
                                   />
-                                   <Form.Control.Feedback type="invalid">
+                                  <Form.Control.Feedback type="invalid">
                                     {errors.image}
                                   </Form.Control.Feedback>
                                 </InputGroup>
                               </Form.Group>
-
                             </Row>
                             <Row className="mb-4 px-4">
                               <Col lg={12}>
