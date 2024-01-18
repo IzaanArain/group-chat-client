@@ -12,6 +12,7 @@ import defautImage from "../../assets/default-image.jpg";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+import  GooglePlacesAutocomplete  from 'react-google-places-autocomplete';
 
 const CompleteProfile = () => {
   const [profileImage, setProfileImage] = useState([]);
@@ -32,6 +33,7 @@ const CompleteProfile = () => {
       // .matches(phoneRegExp, "Phone number is not valid")
       .required("Required"),
     image: yup.mixed().required("Image is required"),
+    // address: yup.mixed().required("address is required"),
   });
   return (
     <>
@@ -67,6 +69,7 @@ const CompleteProfile = () => {
                           name: "",
                           phone: "",
                           image: null,
+                          // address:null
                         }}
                       >
                         {({
@@ -80,6 +83,7 @@ const CompleteProfile = () => {
                           <Form noValidate onSubmit={handleSubmit}>
                             {/* <Row className="mb-3" md={1} lg={1}> */}
                             <Row className="mb-4 px-4">
+
                               <Form.Group as={Col} lg={12} controlId="name">
                                 <Form.Label className="my-2">Name</Form.Label>
                                 <InputGroup hasValidation>
@@ -139,6 +143,25 @@ const CompleteProfile = () => {
                                 )}
                               </Form.Group>
 
+                              {/* <Form.Group as={Col} lg={12} controlId="address">
+                                <Form.Label className="my-2">Address</Form.Label>
+                                <InputGroup hasValidation>
+                                <GooglePlacesAutocomplete
+                                  apiKey="AIzaSyDJfOIDyCievPs5lZh0xq9BOOM_OhvTYXY"
+                                  selectProps={{
+                                    values,
+                                    onChange: (value) => setFieldValue('address', value),
+                                    placeholder: 'Select address',
+                                  }}
+                                />
+                                {errors.address && (
+                                  <Form.Text className="text-danger">
+                                    {errors.address.label}
+                                  </Form.Text>
+                                )}
+                                </InputGroup>
+                              </Form.Group> */}
+
                               <Form.Group as={Col} lg={12} controlId="image">
                                 <Form.Label className="my-2">
                                   Upload Image
@@ -148,6 +171,7 @@ const CompleteProfile = () => {
                                     type="file"
                                     placeholder="Please upload image"
                                     // multiple
+                                    name="image"
                                     aria-describedby="inputGroupImage"
                                     onChange={(event) => {
                                       setProfileImage(
@@ -158,7 +182,6 @@ const CompleteProfile = () => {
                                         event.currentTarget.files
                                       );
                                     }}
-                                    name="image"
                                     isInvalid={!!errors.image}
                                   />
                                   <Form.Control.Feedback type="invalid">
