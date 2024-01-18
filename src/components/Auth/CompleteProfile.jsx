@@ -60,9 +60,9 @@ const CompleteProfile = () => {
                     <div>
                       <Formik
                         validationSchema={schema}
-                        onSubmit={(values, { resetForm }) =>
+                        onSubmit={(values, { resetForm }) =>{
                           SubmitForm(values, { resetForm })
-                        }
+                        }}
                         initialValues={{
                           name: "",
                           phone: "",
@@ -102,12 +102,7 @@ const CompleteProfile = () => {
                                 <Form.Label className="my-2">
                                   Phone Number
                                 </Form.Label>
-                                <InputGroup
-                                  hasValidation
-                                  className="d-flex align-items-center justify-content-between"
-                                  id={errors.phone && "phoneInput"}
-                                >
-                                  {/* <Form.Control
+                                 {/* <Form.Control
                                     type="tel"
                                     placeholder="Please enter your phone number"
                                     aria-describedby="inputGroupPhone"
@@ -115,10 +110,15 @@ const CompleteProfile = () => {
                                     value={values.phone}
                                     onChange={handleChange}
                                     isInvalid={!!errors.phone}
-                                  /> */}
-                                  {/* <Form.Control.Feedback type="invalid">
+                                  />
+                                  <Form.Control.Feedback type="invalid">
                                     {errors.phone}
                                   </Form.Control.Feedback> */}
+                                <InputGroup
+                                  hasValidation
+                                  className="d-flex align-items-center justify-content-between"
+                                  id={errors.phone && "phoneInput"}
+                                >
                                   <PhoneInput
                                     autoComplete="on"
                                     placeholder="+1 555-123-4567"
