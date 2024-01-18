@@ -12,7 +12,7 @@ import defautImage from "../../assets/default-image.jpg";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
-import  GooglePlacesAutocomplete  from 'react-google-places-autocomplete';
+// import  GooglePlacesAutocomplete  from 'react-google-places-autocomplete';
 
 const CompleteProfile = () => {
   const [profileImage, setProfileImage] = useState([]);
