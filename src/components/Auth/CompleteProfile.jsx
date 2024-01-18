@@ -28,7 +28,7 @@ const CompleteProfile = () => {
     phone: yup
       .string()
       .max(15,"Too Long!")
-      .min(11,"Too small")
+      .min(11,"Too short")
       // .matches(phoneRegExp, "Phone number is not valid")
       .required("Required"),
     image: yup.mixed().required("Image is required"),
@@ -104,7 +104,7 @@ const CompleteProfile = () => {
                                 </Form.Label>
                                 <InputGroup
                                   hasValidation
-                                  className="d-flex align-items-center"
+                                  className="d-flex align-items-center justify-content-between"
                                   id={errors.phone && "phoneInput"}
                                 >
                                   {/* <Form.Control
@@ -121,16 +121,15 @@ const CompleteProfile = () => {
                                   </Form.Control.Feedback> */}
                                   <PhoneInput
                                     autoComplete="on"
-                                    placeholder="Please enter your phone number"
+                                    placeholder="+1 555-123-4567"
                                     value={values.phone}
                                     onChange={(value) =>
                                       setFieldValue("phone", value)
                                     }
-                                    className="p-2 rounded"
-                                    style={{ width: "90%" }}
+                                    className="w-75 p-2 rounded "
                                   />
                                   {errors.phone && (
-                                    <AiOutlineExclamationCircle className=" fs-5 text-end text-danger" />
+                                    <AiOutlineExclamationCircle className=" fs-5 mx-2 text-end text-danger" />
                                   )}
                                 </InputGroup>
                                 {errors.phone && (
