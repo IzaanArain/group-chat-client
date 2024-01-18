@@ -117,7 +117,7 @@ const CompleteProfile = () => {
                                 <InputGroup
                                   hasValidation
                                   className="d-flex align-items-center justify-content-between"
-                                  id={errors.phone && "phoneInput"}
+                                  id={errors.phone ? "phoneError" : "phoneInput"}
                                 >
                                   <PhoneInput
                                     autoComplete="on"
