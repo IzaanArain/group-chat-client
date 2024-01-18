@@ -14,14 +14,14 @@ import PhoneInput from "react-phone-number-input";
 
 const CompleteProfile = () => {
   const [profileImage, setProfileImage] = useState([]);
-
   const SubmitForm = (values, { resetForm }) => {
     // e.preventDefault();
     console.log("values: ", values);
     resetForm();
   };
 
-  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+  const phoneRegExp =
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   const schema = yup.object().shape({
     name: yup.string().max(50, "Too Long!").required("Required"),
     phone: yup
@@ -30,6 +30,7 @@ const CompleteProfile = () => {
       .max(12, "Too Long!")
       .matches(phoneRegExp, "Phone number is not valid")
       .required("Required"),
+      image: yup.mixed().required('Image is required'),
   });
   return (
     <>
@@ -43,7 +44,11 @@ const CompleteProfile = () => {
                   <Card.Img
                     className="rounded-circle shadow border mt-4"
                     variant="top"
-                    src={profileImage.length >= 1 ? URL.createObjectURL(profileImage[0]) : defautImage}
+                    src={
+                      profileImage.length >= 1
+                        ? URL.createObjectURL(profileImage[0])
+                        : defautImage
+                    }
                     style={{ width: "150px", height: "150px" }}
                   />
                 </Col>
@@ -60,6 +65,7 @@ const CompleteProfile = () => {
                         initialValues={{
                           name: "",
                           phone: "",
+                          image: null
                         }}
                       >
                         {({
@@ -73,7 +79,7 @@ const CompleteProfile = () => {
                           <Form noValidate onSubmit={handleSubmit}>
                             {/* <Row className="mb-3" md={1} lg={1}> */}
                             <Row className="mb-4 px-4">
-                              
+
                               <Form.Group as={Col} lg={12} controlId="name">
                                 <Form.Label className="my-2">Name</Form.Label>
                                 <InputGroup hasValidation>
@@ -118,6 +124,25 @@ const CompleteProfile = () => {
                                 </InputGroup>
                               </Form.Group>
 
+                              <Form.Group as={Col} lg={12} controlId="image">
+                                <Form.Label className="my-2">Upload Image</Form.Label>
+                                <InputGroup hasValidation>
+                                  <Form.Control
+                                    type="file"
+                                    placeholder="Please upload image"
+                                    aria-describedby="inputGroupImage"
+                                    onChange={(event) => {
+                                      setProfileImage(event.currentTarget.files)
+                                      setFieldValue("image", event.currentTarget.files);
+                                    }}
+                                    name="image"
+                                    isInvalid={!!errors.image}
+                                  />
+                                   <Form.Control.Feedback type="invalid">
+                                    {errors.image}
+                                  </Form.Control.Feedback>
+                                </InputGroup>
+                              </Form.Group>
 
                             </Row>
                             <Row className="mb-4 px-4">
