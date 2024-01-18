@@ -130,6 +130,7 @@ const CompleteProfile = () => {
                                   <Form.Control
                                     type="file"
                                     placeholder="Please upload image"
+                                    multiple
                                     aria-describedby="inputGroupImage"
                                     onChange={(event) => {
                                       setProfileImage(event.currentTarget.files)
