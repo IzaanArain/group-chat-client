@@ -41,7 +41,7 @@ const CompleteProfile = () => {
     <>
       <Container fluid="md">
         <Row className="d-flex flex-column justify-content-center align-items-center">
-          <Col lg={6} xl={4}>
+          <Col   lg={6} xl={4}>
             {/* d-flex align-items-center */}
             <Card className="shadow my-5 ">
               <Row>
@@ -99,8 +99,8 @@ const CompleteProfile = () => {
                                     onChange={handleChange}
                                     isInvalid={touched.name && !!errors.name}
                                   />
-                                   {console.log("Name error",errors.name)}
-                                  {console.log("Name touched",touched)}
+                                   {/* {console.log("Name error",errors.name)} */}
+                                  {/* {console.log("Name touched",touched)} */}
                                   <Form.Control.Feedback type="invalid">
                                     {errors.name}
                                   </Form.Control.Feedback>
