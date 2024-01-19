@@ -30,10 +30,10 @@ const CompleteProfile = () => {
       .string()
       .max(15,"Too Long!")
       .min(11,"Too short")
-      // .matches(phoneRegExp, "Phone number is not valid")
+      .matches(phoneRegExp, "Phone number is not valid")
       .required("Required"),
     image: yup.mixed().required("Image is required"),
-    // address: yup.mixed().required("address is required"),
+    address: yup.mixed().required("address is required"),
   });
   return (
     <>
@@ -69,7 +69,7 @@ const CompleteProfile = () => {
                           name: "",
                           phone: "",
                           image: null,
-                          // address:null
+                          address:""// for GooglePlacesAutocomplete should be null
                         }}
                       >
                         {({
@@ -130,7 +130,7 @@ const CompleteProfile = () => {
                                     onChange={(value) =>
                                       setFieldValue("phone", value)
                                     }
-                                    className="w-75 p-2 rounded "
+                                    className="w-75 p-2 rounded"
                                   />
                                   {errors.phone && (
                                     <AiOutlineExclamationCircle className=" fs-5 mx-2 text-end text-danger" />
@@ -143,10 +143,22 @@ const CompleteProfile = () => {
                                 )}
                               </Form.Group>
 
-                              {/* <Form.Group as={Col} lg={12} controlId="address">
+                               <Form.Group as={Col} lg={12} controlId="address">
                                 <Form.Label className="my-2">Address</Form.Label>
                                 <InputGroup hasValidation>
-                                <GooglePlacesAutocomplete
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Please enter your address"
+                                    aria-describedby="inputGroupAddress"
+                                    name="address"
+                                    value={values.address}
+                                    onChange={handleChange}
+                                    isInvalid={!!errors.address}
+                                  />
+                                  <Form.Control.Feedback type="invalid">
+                                    {errors.address}
+                                  </Form.Control.Feedback>
+                                {/* <GooglePlacesAutocomplete
                                   apiKey="AIzaSyDJfOIDyCievPs5lZh0xq9BOOM_OhvTYXY"
                                   selectProps={{
                                     values,
@@ -158,9 +170,9 @@ const CompleteProfile = () => {
                                   <Form.Text className="text-danger">
                                     {errors.address.label}
                                   </Form.Text>
-                                )}
+                                )} */}
                                 </InputGroup>
-                              </Form.Group> */}
+                              </Form.Group> 
 
                               <Form.Group as={Col} lg={12} controlId="image">
                                 <Form.Label className="my-2">
