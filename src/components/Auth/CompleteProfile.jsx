@@ -22,19 +22,21 @@ const CompleteProfile = () => {
     resetForm();
   };
 
-  const phoneRegExp = /^((\+[1-9]{1,4}[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/ 
-  
+  const phoneRegExp =
+    /^((\+[1-9]{1,4}[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
+
   const schema = yup.object().shape({
     name: yup.string().max(50, "Too Long!").required("Required"),
     phone: yup
       .string()
-      .max(15,"Too Long!")
-      .min(11,"Too short")
+      .max(15, "Too Long!")
+      .min(11, "Too short")
       .matches(phoneRegExp, "Phone number is not valid")
       .required("Required"),
     image: yup.mixed().required("Image is required"),
     address: yup.mixed().required("address is required"),
   });
+
   return (
     <>
       <Container fluid="md">
@@ -62,14 +64,14 @@ const CompleteProfile = () => {
                     <div>
                       <Formik
                         validationSchema={schema}
-                        onSubmit={(values, { resetForm }) =>{
-                          SubmitForm(values, { resetForm })
+                        onSubmit={(values, { resetForm }) => {
+                          SubmitForm(values, { resetForm });
                         }}
                         initialValues={{
                           name: "",
                           phone: "",
                           image: null,
-                          address:""// for GooglePlacesAutocomplete should be null
+                          address: "", // for GooglePlacesAutocomplete should be null
                         }}
                       >
                         {({
@@ -79,11 +81,11 @@ const CompleteProfile = () => {
                           touched,
                           errors,
                           setFieldValue,
+                          handleBlur,
                         }) => (
                           <Form noValidate onSubmit={handleSubmit}>
                             {/* <Row className="mb-3" md={1} lg={1}> */}
                             <Row className="mb-4 px-4">
-
                               <Form.Group as={Col} lg={12} controlId="name">
                                 <Form.Label className="my-2">Name</Form.Label>
                                 <InputGroup hasValidation>
@@ -94,7 +96,8 @@ const CompleteProfile = () => {
                                     name="name"
                                     value={values.name}
                                     onChange={handleChange}
-                                    isInvalid={!!errors.name}
+                                    onBlur={handleBlur}
+                                    isInvalid={touched.name && !!errors.name}
                                   />
                                   <Form.Control.Feedback type="invalid">
                                     {errors.name}
@@ -106,7 +109,7 @@ const CompleteProfile = () => {
                                 <Form.Label className="my-2">
                                   Phone Number
                                 </Form.Label>
-                                 {/* <Form.Control
+                                {/* <Form.Control
                                     type="tel"
                                     placeholder="Please enter your phone number"
                                     aria-describedby="inputGroupPhone"
@@ -121,44 +124,52 @@ const CompleteProfile = () => {
                                 <InputGroup
                                   hasValidation
                                   className="d-flex align-items-center justify-content-between"
-                                  id={errors.phone ? "phoneError" : "phoneInput"}
+                                  id={
+                                    touched.phone && !!errors.phone ? "phoneError" : "phoneInput"
+                                  }
                                 >
                                   <PhoneInput
                                     autoComplete="on"
+                                    id="phone"
+                                    name="phone"
                                     placeholder="+1 555-123-4567"
                                     value={values.phone}
                                     onChange={(value) =>
                                       setFieldValue("phone", value)
                                     }
                                     className="w-75 p-2 rounded"
+                                    onBlur={handleBlur}
                                   />
-                                  {errors.phone && (
+                                  {touched.phone && !!errors.phone ? (
                                     <AiOutlineExclamationCircle className=" fs-5 mx-2 text-end text-danger" />
-                                  )}
+                                  ):null}
                                 </InputGroup>
-                                {errors.phone && (
+                                {touched.phone && !!errors.phone ? (
                                   <Form.Text className="text-danger">
                                     {errors.phone}
                                   </Form.Text>
-                                )}
+                                ):null}
                               </Form.Group>
 
-                               <Form.Group as={Col} lg={12} controlId="address">
-                                <Form.Label className="my-2">Address</Form.Label>
+                              <Form.Group as={Col} lg={12} controlId="address">
+                                <Form.Label className="my-2">
+                                  Address
+                                </Form.Label>
                                 <InputGroup hasValidation>
-                                <Form.Control
+                                  <Form.Control
                                     type="text"
                                     placeholder="Please enter your address"
                                     aria-describedby="inputGroupAddress"
                                     name="address"
                                     value={values.address}
                                     onChange={handleChange}
-                                    isInvalid={!!errors.address}
+                                    onBlur={handleBlur}
+                                    isInvalid={touched.address && !!errors.address}
                                   />
                                   <Form.Control.Feedback type="invalid">
                                     {errors.address}
                                   </Form.Control.Feedback>
-                                {/* <GooglePlacesAutocomplete
+                                  {/* <GooglePlacesAutocomplete
                                   apiKey="AIzaSyDJfOIDyCievPs5lZh0xq9BOOM_OhvTYXY"
                                   selectProps={{
                                     values,
@@ -172,7 +183,7 @@ const CompleteProfile = () => {
                                   </Form.Text>
                                 )} */}
                                 </InputGroup>
-                              </Form.Group> 
+                              </Form.Group>
 
                               <Form.Group as={Col} lg={12} controlId="image">
                                 <Form.Label className="my-2">
@@ -194,7 +205,8 @@ const CompleteProfile = () => {
                                         event.currentTarget.files
                                       );
                                     }}
-                                    isInvalid={!!errors.image}
+                                    onBlur={handleBlur}
+                                    isInvalid={touched.image && !!errors.image}
                                   />
                                   <Form.Control.Feedback type="invalid">
                                     {errors.image}
