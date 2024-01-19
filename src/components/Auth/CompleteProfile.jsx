@@ -26,7 +26,7 @@ const CompleteProfile = () => {
     /^((\+[1-9]{1,4}[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
 
   const schema = yup.object().shape({
-    name: yup.string().max(50, "Too Long!").required("Required"),
+    name: yup.string().min(2, "Too short").max(50, "Too Long!").required("Required"),
     phone: yup
       .string()
       .max(15, "Too Long!")
@@ -94,15 +94,22 @@ const CompleteProfile = () => {
                                     placeholder="Please enter your name"
                                     aria-describedby="inputGroupName"
                                     name="name"
+                                    onBlur={handleBlur}
                                     value={values.name}
                                     onChange={handleChange}
-                                    onBlur={handleBlur}
                                     isInvalid={touched.name && !!errors.name}
                                   />
+                                   {console.log("Name error",errors.name)}
+                                  {console.log("Name touched",touched)}
                                   <Form.Control.Feedback type="invalid">
                                     {errors.name}
                                   </Form.Control.Feedback>
                                 </InputGroup>
+                                {/* {touched.name && errors.name ? (
+                                  <Form.Text className="text-danger">
+                                    {errors.name}
+                                  </Form.Text>
+                                ):null} */}
                               </Form.Group>
 
                               <Form.Group as={Col} lg={12} controlId="phone">
@@ -125,7 +132,7 @@ const CompleteProfile = () => {
                                   hasValidation
                                   className="d-flex align-items-center justify-content-between"
                                   id={
-                                    touched.phone && !!errors.phone ? "phoneError" : "phoneInput"
+                                    errors.phone && touched.phone ? "phoneError" : "phoneInput"
                                   }
                                 >
                                   <PhoneInput
@@ -140,11 +147,11 @@ const CompleteProfile = () => {
                                     className="w-75 p-2 rounded"
                                     onBlur={handleBlur}
                                   />
-                                  {touched.phone && !!errors.phone ? (
+                                  {errors.phone && touched.phone ? (
                                     <AiOutlineExclamationCircle className=" fs-5 mx-2 text-end text-danger" />
                                   ):null}
                                 </InputGroup>
-                                {touched.phone && !!errors.phone ? (
+                                {errors.phone && touched.phone ? (
                                   <Form.Text className="text-danger">
                                     {errors.phone}
                                   </Form.Text>
@@ -183,6 +190,11 @@ const CompleteProfile = () => {
                                   </Form.Text>
                                 )} */}
                                 </InputGroup>
+                                {/* {touched.address && errors.address ? (
+                                  <Form.Text className="text-danger">
+                                    {errors.address}
+                                  </Form.Text>
+                                ):null} */}
                               </Form.Group>
 
                               <Form.Group as={Col} lg={12} controlId="image">
@@ -212,6 +224,11 @@ const CompleteProfile = () => {
                                     {errors.image}
                                   </Form.Control.Feedback>
                                 </InputGroup>
+                                {/* {touched.image && errors.image ? (
+                                  <Form.Text className="text-danger">
+                                    {errors.image}
+                                  </Form.Text>
+                                ):null} */}
                               </Form.Group>
                             </Row>
                             <Row className="mb-4 px-4">
