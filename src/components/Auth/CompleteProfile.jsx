@@ -26,7 +26,11 @@ const CompleteProfile = () => {
     /^((\+[1-9]{1,4}[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
 
   const schema = yup.object().shape({
-    name: yup.string().min(2, "Too short").max(50, "Too Long!").required("Required"),
+    name: yup
+      .string()
+      .min(2, "Too short")
+      .max(50, "Too Long!")
+      .required("Required"),
     phone: yup
       .string()
       .max(15, "Too Long!")
@@ -41,7 +45,7 @@ const CompleteProfile = () => {
     <>
       <Container fluid="md">
         <Row className="d-flex flex-column justify-content-center align-items-center">
-          <Col   lg={6} xl={4}>
+          <Col lg={6} xl={4}>
             {/* d-flex align-items-center */}
             <Card className="shadow my-5 ">
               <Row>
@@ -99,8 +103,6 @@ const CompleteProfile = () => {
                                     onChange={handleChange}
                                     isInvalid={touched.name && !!errors.name}
                                   />
-                                   {/* {console.log("Name error",errors.name)} */}
-                                  {/* {console.log("Name touched",touched)} */}
                                   <Form.Control.Feedback type="invalid">
                                     {errors.name}
                                   </Form.Control.Feedback>
@@ -109,7 +111,7 @@ const CompleteProfile = () => {
                                   <Form.Text className="text-danger">
                                     {errors.name}
                                   </Form.Text>
-                                ):null} */}
+                                ) : null} */}
                               </Form.Group>
 
                               <Form.Group as={Col} lg={12} controlId="phone">
@@ -132,7 +134,9 @@ const CompleteProfile = () => {
                                   hasValidation
                                   className="d-flex align-items-center justify-content-between"
                                   id={
-                                    errors.phone && touched.phone ? "phoneError" : "phoneInput"
+                                    errors.phone && touched.phone
+                                      ? "phoneError"
+                                      : "phoneInput"
                                   }
                                 >
                                   <PhoneInput
@@ -149,13 +153,13 @@ const CompleteProfile = () => {
                                   />
                                   {errors.phone && touched.phone ? (
                                     <AiOutlineExclamationCircle className=" fs-5 mx-2 text-end text-danger" />
-                                  ):null}
+                                  ) : null}
                                 </InputGroup>
                                 {errors.phone && touched.phone ? (
                                   <Form.Text className="text-danger">
                                     {errors.phone}
                                   </Form.Text>
-                                ):null}
+                                ) : null}
                               </Form.Group>
 
                               <Form.Group as={Col} lg={12} controlId="address">
@@ -171,7 +175,9 @@ const CompleteProfile = () => {
                                     value={values.address}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    isInvalid={touched.address && !!errors.address}
+                                    isInvalid={
+                                      touched.address && !!errors.address
+                                    }
                                   />
                                   <Form.Control.Feedback type="invalid">
                                     {errors.address}
