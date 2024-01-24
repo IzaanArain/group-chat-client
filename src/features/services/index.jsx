@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 axios.defaults.baseURL=import.meta.env.VITE_API_URL
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 export const postRequest=(apiEndpoint,thunkName)=>{
     return createAsyncThunk(
@@ -11,13 +11,15 @@ export const postRequest=(apiEndpoint,thunkName)=>{
             try{
                 const endpoint = params ? `${apiEndpoint}${params}` : apiEndpoint;
                 const res=await axios.post(endpoint,body);
+                console.log("res",res)
+                console.log("isToast",isToast)
                 if (isToast) {
                     toast.success(response?.data?.message);
                 }
                 return res
             } catch(error) {
                 if(isToast){
-                    console.log("post request",error?.response?.data?.message)
+                    // console.log("post request",error?.response?.data?.message)
                     toast.error(error?.response?.data?.message,{
                         // position: toast.POSITION.TOP_RIGHT,
                     })

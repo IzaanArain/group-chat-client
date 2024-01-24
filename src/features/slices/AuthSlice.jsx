@@ -42,9 +42,9 @@ const authSlice = createSlice({
             case "signin/fulfilled":
               state.user = action.payload.data.data;
               axios.defaults.headers.common["Authorization"] = action.payload.data.data.token;
-              toast.success(`${action?.payload?.data?.message}`, {
-                position: toast.POSITION.TOP_RIGHT,
-              });
+              // toast.success(`${action?.payload?.data?.message}`, {
+              //   position: toast.POSITION.TOP_RIGHT,
+              // });
               break;
             default:
               console.log("Unknown action");
