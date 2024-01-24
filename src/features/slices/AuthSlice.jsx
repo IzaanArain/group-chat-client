@@ -41,8 +41,7 @@ const authSlice = createSlice({
           switch (action.type) {
             case "signin/fulfilled":
               state.user = action.payload.data.data;
-              axios.defaults.headers.common["Authorization"] =
-                action.payload.data.data.token;
+              axios.defaults.headers.common["Authorization"] = action.payload.data.data.token;
               toast.success(`${action?.payload?.data?.message}`, {
                 position: toast.POSITION.TOP_RIGHT,
               });
@@ -57,19 +56,12 @@ const authSlice = createSlice({
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
         (state, action) => {
-          if (action.payload.status == 400) {
-            state.isError = true;
-            console.error("error", action?.payload?.data?.message);
-            toast.error(`${action?.payload?.data?.message}`, {
-              position: toast.POSITION.TOP_RIGHT,
-            });
-          } else {
-            switch (action.type) {
-              default:
-                state.isError = true;
-                console.log("Unknown action");
-                break;
-            }
+            // console.error("error", action.payload.status);
+          switch (action.type) {
+            default:
+              state.isError = true;
+              console.log("Unknown action");
+              break;
           }
         }
       );

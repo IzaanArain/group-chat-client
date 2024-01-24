@@ -12,6 +12,7 @@ import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { signUpUser } from "../../features/featureActions/Actions";
+
 const SignUp = () => {
   const dispatch = useDispatch();
   const { Formik } = formik;
@@ -28,7 +29,7 @@ const SignUp = () => {
       await dispatch(signUpUser(payload)).unwrap();
       resetForm();
     } catch (rejectedValueOrSerializedError) {
-      console.log(rejectedValueOrSerializedError)
+      console.log("signup component:",rejectedValueOrSerializedError)
     }
   };
   const schema = yup.object().shape({
