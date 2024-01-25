@@ -58,6 +58,7 @@ const authSlice = createSlice({
           switch (action.type) {
             default:
               state.isError = true;
+              state.isLoading=false
               console.log("Unknown action/rejected");
               break;
           }
