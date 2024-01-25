@@ -11,10 +11,8 @@ export const postRequest=(apiEndpoint,thunkName)=>{
             try{
                 const endpoint = params ? `${apiEndpoint}${params}` : apiEndpoint;
                 const res=await axios.post(endpoint,body);
-                console.log("res",res)
-                console.log("isToast",isToast)
                 if (isToast) {
-                    toast.success(response?.data?.message);
+                    toast.success(res?.data?.message);
                 }
                 return res
             } catch(error) {

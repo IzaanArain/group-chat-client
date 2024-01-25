@@ -29,7 +29,8 @@ const SignUp = () => {
       await dispatch(signUpUser(payload)).unwrap();
       resetForm();
     } catch (rejectedValueOrSerializedError) {
-      console.log("signup component:",rejectedValueOrSerializedError)
+      // console.log("signup component:",rejectedValueOrSerializedError)
+      resetForm()
     }
   };
   const schema = yup.object().shape({

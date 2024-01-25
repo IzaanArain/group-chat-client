@@ -27,7 +27,7 @@ const authSlice = createSlice({
             default:
               state.isLoading = true;
               state.isError = false;
-              console.log("Unknown action");
+              console.log("Unknown action/pending");
               break;
           }
         }
@@ -39,15 +39,13 @@ const authSlice = createSlice({
           state.isLoading = false;
           state.isError = false;
           switch (action.type) {
-            case "signin/fulfilled":
+            case 'signup/fulfilled':
+              console.log("signin data",action.payload.data)
               state.user = action.payload.data.data;
               axios.defaults.headers.common["Authorization"] = action.payload.data.data.token;
-              // toast.success(`${action?.payload?.data?.message}`, {
-              //   position: toast.POSITION.TOP_RIGHT,
-              // });
               break;
             default:
-              console.log("Unknown action");
+              console.log("Unknown action/fulfilled");
               break;
           }
         }
@@ -60,7 +58,7 @@ const authSlice = createSlice({
           switch (action.type) {
             default:
               state.isError = true;
-              console.log("Unknown action");
+              console.log("Unknown action/rejected");
               break;
           }
         }
