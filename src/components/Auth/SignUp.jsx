@@ -30,7 +30,7 @@ const SignUp = () => {
       resetForm();
     } catch (rejectedValueOrSerializedError) {
       // console.log("signup component:",rejectedValueOrSerializedError)
-      resetForm()
+      // resetForm()
     }
   };
   const schema = yup.object().shape({

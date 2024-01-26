@@ -10,24 +10,34 @@ import { TfiEmail } from "react-icons/tfi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
-
+import { loginUser } from "../../features/featureActions/Actions";
+import { useDispatch } from "react-redux";
 const Login = () => {
   const { Formik } = formik;
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const SubmitForm = (values, { resetForm }) => {
+  const dispatch=useDispatch();
+  const SubmitForm = async(values, { resetForm }) => {
     // e.preventDefault();
-    console.log("values: ", values);
-    resetForm();
+    try{
+      let payload = {
+        body: values,
+        params: false,
+        isToast: true,
+      };
+      await dispatch(loginUser(payload)).unwrap()
+    }catch(rejectedValueOrSerializedError){
+      // resetForm();
+    }
   };
 
   const schema = yup.object().shape({
-    loginEmail: yup
+    email: yup
       .string()
       .email("Invalid email")
       .max(50, "Too Long!")
       .required("Required"),
-    loginPassword: yup
+    password: yup
       .string()
       .min(8, "Too Short!")
       .max(50, "Too Long!")
@@ -42,8 +52,8 @@ const Login = () => {
             SubmitForm(values, { resetForm })
           }
           initialValues={{
-            loginEmail: "",
-            loginPassword: "",
+            email: "",
+            password: "",
           }}
         >
           {({ handleSubmit, handleChange, values, touched, errors }) => (
@@ -60,14 +70,14 @@ const Login = () => {
                       type="email"
                       placeholder=""
                       aria-describedby="inputGroupEmail"
-                      name="loginEmail"
-                      value={values.loginEmail}
+                      name="email"
+                      value={values.email}
                       onChange={handleChange}
-                      isInvalid={!!errors.loginEmail}
+                      isInvalid={!!errors.email}
                       required
                     />
                     <Form.Control.Feedback type="invalid">
-                      {errors.loginEmail}
+                      {errors.email}
                     </Form.Control.Feedback>
                   </InputGroup>
                 </Form.Group>
@@ -82,10 +92,10 @@ const Login = () => {
                       type={showPassword ? "text" : "password"}
                       placeholder=""
                       aria-describedby="inputGroupPassword"
-                      name="loginPassword"
-                      value={values.loginPassword}
+                      name="password"
+                      value={values.password}
                       onChange={handleChange}
-                      isInvalid={!!errors.loginPassword}
+                      isInvalid={!!errors.password}
                       required
                     />
                     <InputGroup.Text>
@@ -97,7 +107,7 @@ const Login = () => {
                       </button>
                     </InputGroup.Text>
                     <Form.Control.Feedback type="invalid">
-                      {errors.loginPassword}
+                      {errors.password}
                     </Form.Control.Feedback>
                   </InputGroup>
                 </Form.Group>
