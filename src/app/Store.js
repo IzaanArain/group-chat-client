@@ -8,7 +8,8 @@ const persistedUser=persistReducer(persistConfig,userReducer);
 
 const rootReducer=combineReducers({
   auth:persistedUser
-})
+});
+
 const store=configureStore({
     reducer:rootReducer,
     middleware: (getDefaultMiddleware) =>

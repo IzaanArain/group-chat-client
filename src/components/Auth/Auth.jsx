@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import Login from "./Login";
 import SignUp from "./SignUp";
+
 const Auth = () => {
   return (
     <>

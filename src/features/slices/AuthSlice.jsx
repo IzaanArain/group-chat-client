@@ -11,13 +11,13 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    sessionOut: (state) => {
-      state.isLoading = false;
-      state.isError = false;
-      state.user = null;
-    },
+    // sessionOut: (state) => {
+    //   state.isLoading = false;
+    //   state.isError = false;
+    //   state.user = null;
+    // },
   },
-  extraReducers: (builder) => {
+  extraReducers:(builder)=> {
     builder
       //pending
       .addMatcher(
@@ -39,10 +39,9 @@ const authSlice = createSlice({
           state.isLoading = false;
           state.isError = false;
           switch (action.type) {
-            case 'signup/fulfilled':
+            case 'signin/fulfilled':
               console.log("signin data",action.payload.data)
-              state.user = action.payload.data.data;
-              axios.defaults.headers.common["Authorization"] = action.payload.data.data.token;
+              // state.user = action.payload.data;
               break;
             default:
               console.log("Unknown action/fulfilled");
