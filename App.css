@@ -7,7 +7,6 @@
     /* justify-content: center; */
 }
 .auth-section{
-    background-color: azure;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -17,7 +16,12 @@
     background-position: center;
     /* background-repeat: no-repeat; */
 }
-
+.otp-section{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
 #phoneInput{
     border: 0.5px solid #E0E0E0;
     border-radius: 0.3rem;
