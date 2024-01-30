@@ -64,7 +64,7 @@ const VerifyAccount = () => {
             <Col lg={6}>
               <Form>
                 {/* <div className="d-flex justify-content-center align-items-center gap-2"> */}
-                 <Row sm={6} md={6} lg={6}>
+                 <Row lg={6}>
                  {otp.map((ele, index) => {
                     return (
                       <Form.Group as={Col} controlId={`otpInput${index}`} key={index}>
@@ -93,7 +93,7 @@ const VerifyAccount = () => {
                 {/* </div> */}
                 <Row>
                   <Col className="d-flex justify-content-center align-items-center py-5">
-                  <Button className="w-50 p-2" variant="outline-primary">Verify</Button>
+                  <Button className="shadow w-50 p-2" variant="outline-primary">Verify</Button>
                   </Col>
                 </Row>
               </Form>
