@@ -61,13 +61,13 @@ const VerifyAccount = () => {
                 </Card.Title>
               </Card>
             </Col>
-            <Col lg={6}>
+            <Col lg={4}>
               <Form>
                 {/* <div className="d-flex justify-content-center align-items-center gap-2"> */}
-                 <Row lg={6}>
+                 <Row lg={6} className="mx-1">
                  {otp.map((ele, index) => {
                     return (
-                      <Form.Group as={Col} controlId={`otpInput${index}`} key={index}>
+                      <Form.Group as={Col} className="p-1" controlId={`otpInput${index}`} key={index}>
                         <InputGroup>
                           <Form.Control
                             type="text"
@@ -75,7 +75,7 @@ const VerifyAccount = () => {
                             value={ele}
                             maxLength={1}
                             style={{ fontSize: "1.5rem" }}
-                            className="shadow text-center"
+                            className="shadow text-center "
                             onChange={(e) => {
                               handleOtpChange(index, e.target.value);
                               focusNextInput(index);
