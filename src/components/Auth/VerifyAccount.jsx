@@ -10,30 +10,39 @@ const VerifyAccount = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const otpInputsRef = useRef([]);
 
-   // Function to handle changes in the OTP input fields
-   const handleOtpChange = (index, value) => {
+  // Function to handle changes in the OTP input fields
+  const handleOtpChange = (index, value) => {
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
   };
 
   // Function to focus on the next OTP input field
+  // we've added a check to ensure that otpInputsRef.current is not null or undefined
   const focusNextInput = (index) => {
-    if (index < otpInputsRef.current.length - 1) {
+    if (otpInputsRef.current && index < otpInputsRef.current.length - 1) {
       otpInputsRef.current[index + 1].focus();
     }
   };
 
   const focusPreviousInput = (index) => {
-    if (index > 0) {
+    if (index > 0 ) {
       otpInputsRef.current[index - 1].focus();
     }
   };
 
   const handleKeyDown = (e, index) => {
+    // If backspace is pressed and the current input field is empty,
+    // focus on the previous input field
     if (e.key === "Backspace" && index > 0 && otp[index] === "") {
+      // Prevent the default behavior of the input field
+      e.preventDefault();
       // If backspace is pressed and the current input field is empty,
-      // focus on the previous input field
+      // remove the content in the previous input field and focus on it
+      const newIndex = index - 1;
+      const newOtp = [...otp];
+      newOtp[newIndex] = "";
+      setOtp(newOtp);
       focusPreviousInput(index);
     }
   };
@@ -52,36 +61,42 @@ const VerifyAccount = () => {
                 </Card.Title>
               </Card>
             </Col>
-            <Col lg={6} xl={6}>
-              <Form className="d-flex justify-content-center align-items-center gap-2">
-                {otp.map((ele,index) => {
-                  return (
-                    <Form.Group controlId="otpInput" key={index}>
-                      <InputGroup>
-                        <Form.Control
-                          type="text"
-                          name="otpInput"
-                          value={ele}
-                          maxLength={1}
-                          style={{ fontSize: "1.5rem" }}
-                          className="shadow text-center"
-                          onChange={(e) => {
-                            handleOtpChange(index, e.target.value);
-                            focusNextInput(index);
-                          }}
-                          onKeyDown={(e) => handleKeyDown(e, index)}
-                          ref={(input) => {
-                            otpInputsRef.current[index] = input;
-                          }}
-                        />
-                      </InputGroup>
-                    </Form.Group>
-                  );
-                })}
+            <Col lg={6}>
+              <Form>
+                {/* <div className="d-flex justify-content-center align-items-center gap-2"> */}
+                 <Row sm={6} md={6} lg={6}>
+                 {otp.map((ele, index) => {
+                    return (
+                      <Form.Group as={Col} controlId={`otpInput${index}`} key={index}>
+                        <InputGroup>
+                          <Form.Control
+                            type="text"
+                            name="otpInput"
+                            value={ele}
+                            maxLength={1}
+                            style={{ fontSize: "1.5rem" }}
+                            className="shadow text-center"
+                            onChange={(e) => {
+                              handleOtpChange(index, e.target.value);
+                              focusNextInput(index);
+                            }}
+                            onKeyDown={(e) => handleKeyDown(e, index)}
+                            ref={(input) => {
+                              otpInputsRef.current[index] = input;
+                            }}
+                          />
+                        </InputGroup>
+                      </Form.Group>
+                    );
+                  })}
+                 </Row>
+                {/* </div> */}
+                <Row>
+                  <Col className="d-flex justify-content-center align-items-center py-5">
+                  <Button className="w-50 p-2" variant="outline-primary">Verify</Button>
+                  </Col>
+                </Row>
               </Form>
-            </Col>
-            <Col >
-              {/* <Button>Verify</Button> */}
             </Col>
           </Row>
         </Container>
