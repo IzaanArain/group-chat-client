@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Card from "react-bootstrap/Card";
 import { Button } from "react-bootstrap";
-import { VerifyUser } from "../../features/featureActions/Actions";
+import { verifyUser } from "../../features/featureActions/Actions";
 import { useDispatch } from "react-redux";
 import { useLocation,useNavigate } from "react-router-dom";
 const VerifyAccount = () => {
@@ -34,7 +34,7 @@ const VerifyAccount = () => {
         params: false,
         isToast: true,
       };
-      const user=await dispatch(VerifyUser(payload)).unwrap();
+      const user=await dispatch(verifyUser(payload)).unwrap();
       if(user?.data?.data?.isProfileCompleted){
         navigate("/home");
       }else{

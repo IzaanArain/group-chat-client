@@ -13,13 +13,26 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 // import  GooglePlacesAutocomplete  from 'react-google-places-autocomplete';
-
+import { useDispatch } from "react-redux";
+import { completeUserProfile } from "../../features/featureActions/Actions";
+import { useNavigate } from "react-router-dom";
 const CompleteProfile = () => {
   const [profileImage, setProfileImage] = useState([]);
-  const SubmitForm = (values, { resetForm }) => {
-    // e.preventDefault();
-    console.log("values: ", values);
-    resetForm();
+  const dispatch=useDispatch();
+  const navigate=useNavigate();
+  const SubmitForm = async(values, { resetForm }) => {
+    try{
+      let payload = {
+        body: values,
+        params: false,
+        isToast: true,
+      };
+      await dispatch(completeUserProfile(payload)).unwrap();
+      navigate("/home")
+      resetForm();
+    }catch(rejectedValueOrSerializedError){
+
+    }
   };
 
   const phoneRegExp =
