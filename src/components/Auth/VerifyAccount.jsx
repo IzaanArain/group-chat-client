@@ -38,7 +38,7 @@ const VerifyAccount = () => {
       if(user?.data?.data?.isProfileCompleted){
         navigate("/home");
       }else{
-        navigate("/completeProfile")
+        navigate("/completeProfile",{state:{userId:userId}})
       }
     }catch(rejectedValueOrSerializedError){
 

@@ -15,15 +15,28 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 // import  GooglePlacesAutocomplete  from 'react-google-places-autocomplete';
 import { useDispatch } from "react-redux";
 import { completeUserProfile } from "../../features/featureActions/Actions";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 const CompleteProfile = () => {
   const [profileImage, setProfileImage] = useState([]);
   const dispatch=useDispatch();
   const navigate=useNavigate();
+  const location=useLocation();
+  const userId=location?.state?.userId ? location?.state?.userId : null
   const SubmitForm = async(values, { resetForm }) => {
     try{
+      var formData = new FormData()
+      const appendIfValue = (key, value) => {
+        if (value !== undefined && value.trim() !== '') {
+            formData.append(key, value);
+        }
+    };
+    appendIfValue("name",values.name);
+    appendIfValue("phone",values.phone);
+    appendIfValue("_id",userId);
+    appendIfValue("address",values.address)
+    formData.append("profileImage",values.image)
       let payload = {
-        body: values,
+        body: formData,
         params: false,
         isToast: true,
       };
