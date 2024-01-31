@@ -25,5 +25,5 @@ persistor.subscribe(()=>{
   const persistedState = store.getState();
   const {user}=persistedState?.auth || {};
   console.log("persistedState",user);
-  axios.defaults.headers.common.Authorization=user?.token
+  // axios.defaults.headers.common.Authorization=user?.token
 })
