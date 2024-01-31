@@ -6,17 +6,45 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Card from "react-bootstrap/Card";
 import { Button } from "react-bootstrap";
+import { VerifyUser } from "../../features/featureActions/Actions";
+import { useDispatch } from "react-redux";
+import { useLocation,useNavigate } from "react-router-dom";
 const VerifyAccount = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const otpInputsRef = useRef([]);
-
+  const location=useLocation();
+  const navigate=useNavigate();
+  const dispatch=useDispatch();
+  const userId=location?.state?.userId ? location?.state?.userId : null
   // Function to handle changes in the OTP input fields
   const handleOtpChange = (index, value) => {
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
   };
+  const onSubmit=async(e)=>{
+    e.preventDefault();
+    const userOtp=otp.join("");
+    console.log("otp",userOtp)
+    try{
+      let payload = {
+        body: {
+          otp:userOtp,
+          userId
+        },
+        params: false,
+        isToast: true,
+      };
+      const user=await dispatch(VerifyUser(payload)).unwrap();
+      if(user?.data?.data?.isProfileCompleted){
+        navigate("/home");
+      }else{
+        navigate("/completeProfile")
+      }
+    }catch(rejectedValueOrSerializedError){
 
+    }
+  }
   // Function to focus on the next OTP input field
   // we've added a check to ensure that otpInputsRef.current is not null or undefined
   const focusNextInput = (index) => {
@@ -62,7 +90,7 @@ const VerifyAccount = () => {
               </Card>
             </Col>
             <Col lg={4}>
-              <Form>
+              <Form onSubmit={onSubmit}>
                 {/* <div className="d-flex justify-content-center align-items-center gap-2"> */}
                  <Row lg={6} className="mx-1">
                  {otp.map((ele, index) => {
@@ -93,7 +121,7 @@ const VerifyAccount = () => {
                 {/* </div> */}
                 <Row>
                   <Col className="d-flex justify-content-center align-items-center py-5">
-                  <Button className="shadow w-50 p-2" variant="outline-primary">Verify</Button>
+                  <Button type="submit" className="shadow w-50 p-2" variant="outline-primary">Verify</Button>
                   </Col>
                 </Row>
               </Form>

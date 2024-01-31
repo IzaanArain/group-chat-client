@@ -12,12 +12,14 @@ import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { signUpUser } from "../../features/featureActions/Actions";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const { Formik } = formik;
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const navigate=useNavigate();
   const SubmitForm = async(values, { resetForm }) => {
     // e.preventDefault();
     try {
@@ -26,7 +28,9 @@ const SignUp = () => {
         params: false,
         isToast: true,
       };
-      await dispatch(signUpUser(payload)).unwrap();
+     const user= await dispatch(signUpUser(payload)).unwrap();
+     console.log("userId",user)
+      navigate("/verifyAccount",{state:{userId:user?.data?.data?.userId}});
       resetForm();
     } catch (rejectedValueOrSerializedError) {
       // console.log("signup component:",rejectedValueOrSerializedError)

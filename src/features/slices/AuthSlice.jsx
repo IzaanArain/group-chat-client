@@ -41,7 +41,7 @@ const authSlice = createSlice({
           switch (action.type) {
             case 'signin/fulfilled':
               console.log("signin data",action.payload.data)
-              // state.user = action.payload.data;
+              state.user = action.payload.data.data;
               break;
             default:
               console.log("Unknown action/fulfilled");
