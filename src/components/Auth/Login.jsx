@@ -26,6 +26,7 @@ const Login = () => {
         isToast: true,
       };
       await dispatch(loginUser(payload)).unwrap()
+      resetForm()
     }catch(rejectedValueOrSerializedError){
       // resetForm();
     }
