@@ -2,6 +2,7 @@ import { configureStore,combineReducers } from "@reduxjs/toolkit";
 import userReducer from "../features/slices/AuthSlice"
 import persistConfig from "../app/index";
 import { persistStore, persistReducer } from 'redux-persist';
+import axios from "axios";
 // import thunk from 'redux-thunk';
 
 const persistedUser=persistReducer(persistConfig,userReducer);
@@ -19,3 +20,10 @@ const store=configureStore({
 });
 export const persistor = persistStore(store);
 export default store;
+
+persistor.subscribe(()=>{
+  const persistedState = store.getState();
+  const {user}=persistedState?.auth || {};
+  console.log("persistedState",user);
+  // axios.defaults.headers.common.Authorization=user?.token
+})

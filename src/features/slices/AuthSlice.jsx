@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-
+import axios from "axios";
 const initialState = {
   isLoading: false,
   isError: false,
+  status: null,
   user: null,
 };
 
@@ -40,8 +41,8 @@ const authSlice = createSlice({
           state.isError = false;
           switch (action.type) {
             case 'signin/fulfilled':
-              console.log("signin data",action.payload.data)
               state.user = action.payload.data.data;
+              axios.defaults.headers.common['Authorization'] = action.payload.data.data.token;
               break;
             default:
               console.log("Unknown action/fulfilled");
@@ -53,18 +54,23 @@ const authSlice = createSlice({
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
         (state, action) => {
-            // console.error("error", action.payload.status);
-          switch (action.type) {
-            default:
-              state.isError = true;
-              state.isLoading=false
-              console.log("Unknown action/rejected");
-              break;
-          }
+            if(action.payload.status==401){
+              state.status=action.payload.status;
+            }else{
+              switch (action.type) {
+                default:
+                  state.isError = true;
+                  state.isLoading=false
+                  console.log("Unknown action/rejected");
+                  break;
+              }
+            }
         }
       );
   },
 });
 
+export const getUserToken = (state) => state?.auth?.user?.token;
+export const getUserStatus=(state)=>state?.auth?.status;
 export const { sessionOut } = authSlice.actions;
 export default authSlice.reducer;
