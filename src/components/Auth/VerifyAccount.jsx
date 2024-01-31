@@ -25,7 +25,6 @@ const VerifyAccount = () => {
   const onSubmit=async(e)=>{
     e.preventDefault();
     const userOtp=otp.join("");
-    console.log("otp",userOtp)
     try{
       let payload = {
         body: {
