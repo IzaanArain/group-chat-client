@@ -13,7 +13,7 @@ const Layout = () => {
   return (
     <>
       <BrowserRouter>
-        {token && status!==401 ?  (
+        {token  ?  ( //editProfile
           <Routes>
             <Route path="/chats" excat element={<Chats />} />
             <Route path='/editProfile' excat element={<EditProfile/>}/>

@@ -29,7 +29,7 @@ const Login = () => {
       };
       await dispatch(loginUser(payload)).unwrap()
       navigate("/chats")
-      // resetForm()
+      resetForm()
     }catch(rejectedValueOrSerializedError){
       // resetForm();
     }

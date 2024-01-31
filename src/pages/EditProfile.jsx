@@ -15,7 +15,7 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 // import  GooglePlacesAutocomplete  from 'react-google-places-autocomplete';
 import { useDispatch } from "react-redux";
 import { useNavigate,useLocation } from "react-router-dom";
-
+import { editUserProfile } from "../features/featureActions/Actions";
 const EditProfile = () => {
   const [profileImage, setProfileImage] = useState([]);
   const dispatch=useDispatch();
@@ -32,7 +32,6 @@ const EditProfile = () => {
     };
     appendIfValue("name",values.name);
     appendIfValue("phone",values.phone);
-    appendIfValue("_id",userId);
     appendIfValue("address",values.address)
     formData.append("profileImage",values.image)
       let payload = {
@@ -40,8 +39,7 @@ const EditProfile = () => {
         params: false,
         isToast: true,
       };
-    //   await dispatch().unwrap();
-      resetForm();
+      await dispatch(editUserProfile(payload)).unwrap();
     }catch(rejectedValueOrSerializedError){
 
     }
