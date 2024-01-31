@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import Chats from "../pages/Chats";
-import CompleteProfile from "./Auth/CompleteProfile";
-import VerifyAccount from "./Auth/VerifyAccount";
+import Home from "../../pages/Home";
+import Chats from "../../pages/Chats";
+import CompleteProfile from "../Auth/CompleteProfile";
+import VerifyAccount from "../Auth/VerifyAccount";
 const Layout = () => {
   return (
     <>

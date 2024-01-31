@@ -12,11 +12,13 @@ import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { loginUser } from "../../features/featureActions/Actions";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const { Formik } = formik;
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const dispatch=useDispatch();
+  const navigate=useNavigate();
   const SubmitForm = async(values, { resetForm }) => {
     // e.preventDefault();
     try{
@@ -26,7 +28,8 @@ const Login = () => {
         isToast: true,
       };
       await dispatch(loginUser(payload)).unwrap()
-      resetForm()
+      navigate("/chats")
+      // resetForm()
     }catch(rejectedValueOrSerializedError){
       // resetForm();
     }
