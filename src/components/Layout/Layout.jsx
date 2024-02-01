@@ -13,16 +13,12 @@ const Layout = () => {
   return (
     <>
       <BrowserRouter>
-        {user?.token? ( //&& status !== 401
+        {user?.token ? ( //&& status !== 401
           <Routes>
-            {user?.isCompleteProfile !== 1 ? (
-              <Route path="/completeProfile" excat element={<CompleteProfile />}/>
-            ) : (
-              <>
-                <Route path="/chats" excat element={<Chats />} />
-                <Route path="*" excat element={<Navigate to="/chats" />} />
-              </>
-            )}
+            {/* isCompleteProfile !==1 */}
+            <Route path="/completeProfile" excat element={<CompleteProfile />}/>
+            <Route path="/chats" excat element={<Chats />} />
+            <Route path="*" excat element={<Navigate to="/chats" />} />
           </Routes>
         ) : (
           <Routes>
