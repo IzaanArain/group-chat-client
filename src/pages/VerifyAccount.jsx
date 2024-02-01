@@ -6,9 +6,10 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Card from "react-bootstrap/Card";
 import { Button } from "react-bootstrap";
-import { verifyUser } from "../../features/featureActions/Actions";
+import { verifyUser } from "../features/featureActions/Actions";
 import { useDispatch } from "react-redux";
 import { useLocation,useNavigate } from "react-router-dom";
+
 const VerifyAccount = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const otpInputsRef = useRef([]);
@@ -35,11 +36,12 @@ const VerifyAccount = () => {
         isToast: true,
       };
       const user=await dispatch(verifyUser(payload)).unwrap();
-      if(user?.data?.data?.isProfileCompleted){
-        navigate("/home");
-      }else{
-        navigate("/completeProfile",{state:{userId:userId}})
-      }
+      navigate("/home");
+      // if(user?.data?.data?.isProfileCompleted){
+      //   navigate("/home");
+      // }else{
+      //   navigate("/completeProfile",{state:{userId:userId}})
+      // }
     }catch(rejectedValueOrSerializedError){
 
     }

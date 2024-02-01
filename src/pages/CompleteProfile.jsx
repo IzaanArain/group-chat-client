@@ -8,20 +8,23 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
-import defautImage from "../../assets/default-image.jpg";
+import defautImage from "../assets/default-image.jpg";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 // import  GooglePlacesAutocomplete  from 'react-google-places-autocomplete';
-import { useDispatch } from "react-redux";
-import { completeUserProfile } from "../../features/featureActions/Actions";
+import { useDispatch,useSelector } from "react-redux";
+import { completeUserProfile } from "../features/featureActions/Actions";
 import { useNavigate,useLocation } from "react-router-dom";
+import { getUser } from "../features/slices/AuthSlice";
 const CompleteProfile = () => {
   const [profileImage, setProfileImage] = useState([]);
   const dispatch=useDispatch();
   const navigate=useNavigate();
   const location=useLocation();
   const userId=location?.state?.userId ? location?.state?.userId : null
+  const user=useSelector(getUser)
+  // console.log("user",user)
   const SubmitForm = async(values, { resetForm }) => {
     try{
       var formData = new FormData()
@@ -32,17 +35,17 @@ const CompleteProfile = () => {
     };
     appendIfValue("name",values.name);
     appendIfValue("phone",values.phone);
-    appendIfValue("_id",userId);
-    appendIfValue("address",values.address)
-    formData.append("profileImage",values.image)
+    // appendIfValue("_id",userId);
+    appendIfValue("address",values.address);
+    formData.append("profileImage",values.image[0])
       let payload = {
         body: formData,
         params: false,
         isToast: true,
       };
       await dispatch(completeUserProfile(payload)).unwrap();
-      navigate("/home")
-      resetForm();
+      // navigate("/home")
+      // resetForm();
     }catch(rejectedValueOrSerializedError){
 
     }
@@ -63,7 +66,7 @@ const CompleteProfile = () => {
       .min(11, "Too short")
       .matches(phoneRegExp, "Phone number is not valid")
       .required("Required"),
-    image: yup.mixed().required("Image is required"),
+    // image: yup.mixed().required("Image is required"),
     address: yup.mixed().required("address is required"),
   });
 
@@ -80,8 +83,10 @@ const CompleteProfile = () => {
                     className="rounded-circle shadow border mt-4"
                     variant="top"
                     src={
-                      profileImage.length >= 1
-                        ? URL.createObjectURL(profileImage[0])
+                      user.profileImage
+                        ? `${import.meta.env.VITE_API_URL}/${user.profileImage}`
+                        // : profileImage.length >= 1
+                        // ? URL.createObjectURL(profileImage[0])
                         : defautImage
                     }
                     style={{ width: "150px", height: "150px" }}
@@ -98,10 +103,10 @@ const CompleteProfile = () => {
                           SubmitForm(values, { resetForm });
                         }}
                         initialValues={{
-                          name: "",
-                          phone: "",
-                          image: null,
-                          address: "", // for GooglePlacesAutocomplete should be null
+                          name: user.name,
+                          phone: user.phone,
+                          image: user.profileImage,
+                          address: user.location.address, // for GooglePlacesAutocomplete should be null
                         }}
                       >
                         {({

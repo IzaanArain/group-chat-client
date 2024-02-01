@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import axios from "axios";
+
 const initialState = {
   isLoading: false,
   isError: false,
@@ -12,22 +13,25 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    // sessionOut: (state) => {
-    //   state.isLoading = false;
-    //   state.isError = false;
-    //   state.user = null;
-    // },
+    sessionOut: (state) => {
+      state.isLoading = false;
+      state.isError = false;
+      state.status = null;
+      state.user = null;
+    },
   },
-  extraReducers:(builder)=> {
+  extraReducers: (builder) => {
     builder
       //pending
       .addMatcher(
         (action) => action.type.endsWith("/pending"),
+
         (state, action) => {
+          state.isLoading = true;
+          state.isError = false;
+          state.status = null;
           switch (action.type) {
             default:
-              state.isLoading = true;
-              state.isError = false;
               console.log("Unknown action/pending");
               break;
           }
@@ -40,10 +44,13 @@ const authSlice = createSlice({
           state.isLoading = false;
           state.isError = false;
           switch (action.type) {
-            case 'signin/fulfilled':
+            case "signin/fulfilled":
               state.user = action.payload.data.data;
               // axios.defaults.headers.common['Authorization'] = action.payload.data.data.token;
               break;
+            case "completeProfile/fulfilled":
+              console.log("completeProfile/fulfilled",action.payload.data.data)
+              state.user = action.payload.data.data;
             default:
               console.log("Unknown action/fulfilled");
               break;
@@ -54,23 +61,23 @@ const authSlice = createSlice({
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
         (state, action) => {
-            if(action.payload.status==401){
-              state.status=action.payload.status;
-            }else{
-              switch (action.type) {
-                default:
-                  state.isError = true;
-                  state.isLoading=false
-                  console.log("Unknown action/rejected");
-                  break;
-              }
+          state.isError = true;
+          state.isLoading = false;
+          if (action.payload.status == 401) {
+            state.status = action.payload.status;
+          } else {
+            switch (action.type) {
+              default:
+                console.log("Unknown action/rejected");
+                break;
             }
+          }
         }
       );
   },
 });
 
-export const getUserToken = (state) => state?.auth?.user?.token;
-export const getUserStatus=(state)=>state?.auth?.status;
+export const getUser = (state) => state?.auth?.user;
+export const getUserStatus = (state) => state?.auth?.status;
 export const { sessionOut } = authSlice.actions;
 export default authSlice.reducer;
