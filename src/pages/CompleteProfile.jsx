@@ -15,17 +15,16 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 // import  GooglePlacesAutocomplete  from 'react-google-places-autocomplete';
 import { useDispatch,useSelector } from "react-redux";
 import { completeUserProfile } from "../features/featureActions/Actions";
-import { useNavigate,useLocation } from "react-router-dom";
+// import { useNavigate,useLocation } from "react-router-dom";
 import { getUser } from "../features/slices/AuthSlice";
 
 const CompleteProfile = () => {
   const [profileImage, setProfileImage] = useState([]);
   const dispatch=useDispatch();
-  const navigate=useNavigate();
-  const location=useLocation();
-  const userId=location?.state?.userId ? location?.state?.userId : null
+  // const navigate=useNavigate();
+  // const location=useLocation();
+  // const userId=location?.state?.userId ? location?.state?.userId : null
   const user=useSelector(getUser)
-  // console.log("user",user)
   const SubmitForm = async(values, { resetForm }) => {
     try{
       var formData = new FormData()
@@ -38,7 +37,12 @@ const CompleteProfile = () => {
     appendIfValue("phone",values.phone);
     // appendIfValue("_id",userId);
     appendIfValue("address",values.address);
-    formData.append("profileImage",values.image[0])
+    // formData.append("profileImage",values.image)
+    if (values.image.length >= 1) {
+      values.image.forEach((img) => {
+        formData.append(`profileImage`, img);
+      });
+    }
       let payload = {
         body: formData,
         params: false,
@@ -243,16 +247,17 @@ const CompleteProfile = () => {
                                   <Form.Control
                                     type="file"
                                     placeholder="Please upload image"
-                                    // multiple
+                                    multiple
                                     name="image"
                                     aria-describedby="inputGroupImage"
                                     onChange={(event) => {
+                                      const filesArray=Array.from(event.currentTarget.files)
                                       setProfileImage(
-                                        event.currentTarget.files
+                                       filesArray
                                       );
                                       setFieldValue(
                                         "image",
-                                        event.currentTarget.files
+                                        filesArray
                                       );
                                     }}
                                     onBlur={handleBlur}
