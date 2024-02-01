@@ -88,7 +88,7 @@ const CompleteProfile = () => {
                     className="rounded-circle shadow border mt-4"
                     variant="top"
                     src={
-                      user.profileImage && profileImage.length ===0
+                      user.profileImage && profileImage.length === 0
                         ? `${import.meta.env.VITE_API_URL}/${user.profileImage}`
                         : profileImage.length >= 1
                         ? URL.createObjectURL(profileImage[0])
@@ -251,14 +251,11 @@ const CompleteProfile = () => {
                                     name="image"
                                     aria-describedby="inputGroupImage"
                                     onChange={(event) => {
-                                      const filesArray=Array.from(event.currentTarget.files)
-                                      setProfileImage(
-                                       filesArray
+                                      const filesArray = Array.from(
+                                        event.currentTarget.files
                                       );
-                                      setFieldValue(
-                                        "image",
-                                        filesArray
-                                      );
+                                      setProfileImage(filesArray);
+                                      setFieldValue("image", filesArray);
                                     }}
                                     onBlur={handleBlur}
                                     isInvalid={touched.image && !!errors.image}
