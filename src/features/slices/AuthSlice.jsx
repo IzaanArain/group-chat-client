@@ -49,7 +49,6 @@ const authSlice = createSlice({
               // axios.defaults.headers.common['Authorization'] = action.payload.data.data.token;
               break;
             case "completeProfile/fulfilled":
-              console.log("completeProfile/fulfilled",action.payload.data.data)
               state.user = action.payload.data.data;
             default:
               console.log("Unknown action/fulfilled");

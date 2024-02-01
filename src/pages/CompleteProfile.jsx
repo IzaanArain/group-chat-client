@@ -38,7 +38,8 @@ const CompleteProfile = () => {
     // appendIfValue("_id",userId);
     appendIfValue("address",values.address);
     // formData.append("profileImage",values.image)
-    if (values.image.length >= 1) {
+    console.log("value image",values.image)
+    if (values?.image?.length >= 1) {
       values.image.forEach((img) => {
         formData.append(`profileImage`, img);
       });
@@ -71,7 +72,7 @@ const CompleteProfile = () => {
       .min(11, "Too short")
       .matches(phoneRegExp, "Phone number is not valid")
       .required("Required"),
-    // image: yup.mixed().required("Image is required"),
+    image: yup.mixed().required("Image is required"),
     address: yup.mixed().required("address is required"),
   });
 
@@ -110,7 +111,7 @@ const CompleteProfile = () => {
                         initialValues={{
                           name: user.name,
                           phone: user.phone,
-                          image: user.profileImage,
+                          image:null,
                           address: user.location.address, // for GooglePlacesAutocomplete should be null
                         }}
                       >
@@ -246,7 +247,6 @@ const CompleteProfile = () => {
                                 <InputGroup hasValidation>
                                   <Form.Control
                                     type="file"
-                                    placeholder="Please upload image"
                                     multiple
                                     name="image"
                                     aria-describedby="inputGroupImage"
