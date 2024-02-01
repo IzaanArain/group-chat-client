@@ -88,10 +88,10 @@ const CompleteProfile = () => {
                     className="rounded-circle shadow border mt-4"
                     variant="top"
                     src={
-                      user.profileImage
+                      user.profileImage && profileImage.length ===0
                         ? `${import.meta.env.VITE_API_URL}/${user.profileImage}`
-                        // : profileImage.length >= 1
-                        // ? URL.createObjectURL(profileImage[0])
+                        : profileImage.length >= 1
+                        ? URL.createObjectURL(profileImage[0])
                         : defautImage
                     }
                     style={{ width: "150px", height: "150px" }}
