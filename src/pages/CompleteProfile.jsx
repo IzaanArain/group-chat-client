@@ -17,6 +17,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { completeUserProfile } from "../features/featureActions/Actions";
 import { useNavigate,useLocation } from "react-router-dom";
 import { getUser } from "../features/slices/AuthSlice";
+
 const CompleteProfile = () => {
   const [profileImage, setProfileImage] = useState([]);
   const dispatch=useDispatch();
