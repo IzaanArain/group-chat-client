@@ -29,7 +29,7 @@ const Layout = () => {
           </Routes>
         )} */}
         {
-          user?.token && user?.isProfileCompleted===1 ? (<>
+          user?.token && user?.isProfileCompleted===1 && status!==401 ? (<>
           <Routes>
             <Route path="/completeProfile" excat element={<CompleteProfile />}/>
             <Route path="/chats" excat element={<Chats />} />
