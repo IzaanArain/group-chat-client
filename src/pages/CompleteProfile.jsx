@@ -251,10 +251,12 @@ const CompleteProfile = () => {
                                     name="image"
                                     aria-describedby="inputGroupImage"
                                     onChange={(event) => {
-                                      const filesArray = Array.from(
-                                        event.currentTarget.files
-                                      );
-                                      setProfileImage(filesArray);
+                                      // const filesArray = Array.from(event.currentTarget.files);
+                                      const fileList=event.currentTarget.files
+                                      // console.log(Array.isArray(fileList),fileList);
+                                      // console.log(Array.isArray([...fileList]),[...fileList]);
+                                      const filesArray = [...fileList];
+                                      setProfileImage((prev)=>[...filesArray]);
                                       setFieldValue("image", filesArray);
                                     }}
                                     onBlur={handleBlur}

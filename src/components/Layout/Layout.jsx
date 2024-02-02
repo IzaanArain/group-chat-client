@@ -10,12 +10,13 @@ import { getUser, getUserStatus } from "../../features/slices/AuthSlice";
 const Layout = () => {
   const user = useSelector(getUser);
   const status = useSelector(getUserStatus);
+  // && status !== 401
+  // user.isCompleteProfile !==1
   return (
     <>
       <BrowserRouter>
-        {user?.token ? ( //&& status !== 401
+        {/* {user?.token ? ( 
           <Routes>
-            {/* isCompleteProfile !==1 */}
             <Route path="/completeProfile" excat element={<CompleteProfile />}/>
             <Route path="/chats" excat element={<Chats />} />
             <Route path="*" excat element={<Navigate to="/chats" />} />
@@ -26,7 +27,27 @@ const Layout = () => {
             <Route path="/verifyAccount" excat element={<VerifyAccount />} />
             <Route path="*" excat element={<Navigate to="/home" />} />
           </Routes>
-        )}
+        )} */}
+        {
+          user?.token && user?.isProfileCompleted===1 ? (<>
+          <Routes>
+            <Route path="/completeProfile" excat element={<CompleteProfile />}/>
+            <Route path="/chats" excat element={<Chats />} />
+            <Route path="*" excat element={<Navigate to="/chats" />} />
+          </Routes>
+          </>) : user?.token && user?.isProfileCompleted===0 ? (<>
+            <Routes>
+            <Route path="/completeProfile" excat element={<CompleteProfile />}/>
+            <Route path="*" excat element={<Navigate to="/completeProfile" />} />
+            </Routes>
+          </>):(<>
+            <Routes>
+            <Route path="/home" excat element={<Home />} />
+            <Route path="/verifyAccount" excat element={<VerifyAccount />} />
+            <Route path="*" excat element={<Navigate to="/home" />} />
+          </Routes>
+          </>)
+        }
       </BrowserRouter>
     </>
   );
