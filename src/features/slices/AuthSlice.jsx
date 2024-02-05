@@ -46,7 +46,7 @@ const authSlice = createSlice({
           switch (action.type) {
             case "signin/fulfilled":
               state.user = action.payload.data.data;
-              // axios.defaults.headers.common['Authorization'] = action.payload.data.data.token;
+              axios.defaults.headers.common['Authorization'] = action.payload.data.data.token;
               break;
             case "completeProfile/fulfilled":
               state.user = action.payload.data.data;
