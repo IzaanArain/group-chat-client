@@ -27,6 +27,7 @@ const CompleteProfile = () => {
   const user=useSelector(getUser)
   const SubmitForm = async(values, { resetForm }) => {
     try{
+      console.log("address",values.address)
       var formData = new FormData()
       const appendIfValue = (key, value) => {
         if (value !== undefined && value.trim() !== '') {
@@ -36,7 +37,7 @@ const CompleteProfile = () => {
     appendIfValue("name",values.name);
     appendIfValue("phone",values.phone);
     // appendIfValue("_id",userId);
-    appendIfValue("address",values.address);
+    // appendIfValue("address",values.address);
     // formData.append("profileImage",values.image)
     console.log("value image",values.image)
     if (values?.image?.length >= 1) {
@@ -72,7 +73,7 @@ const CompleteProfile = () => {
       .min(11, "Too short")
       .matches(phoneRegExp, "Phone number is not valid")
       .required("Required"),
-    image: yup.mixed().required("Image is required"),
+    // image: yup.mixed().required("Image is required"),
     address: yup.mixed().required("address is required"),
   });
 
@@ -227,11 +228,11 @@ const CompleteProfile = () => {
                                     placeholder: 'Select address',
                                   }}
                                 />
-                                {errors.address && (
+                                {/* {errors.address && (
                                   <Form.Text className="text-danger">
                                     {errors.address.label}
                                   </Form.Text>
-                                )}
+                                )} */}
                                 </InputGroup>
                                 {/* {touched.address && errors.address ? (
                                   <Form.Text className="text-danger">
