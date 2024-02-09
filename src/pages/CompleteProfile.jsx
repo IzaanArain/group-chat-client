@@ -12,7 +12,7 @@ import defautImage from "../assets/default-image.jpg";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
-// import  GooglePlacesAutocomplete  from 'react-google-places-autocomplete';
+import  GooglePlacesAutocomplete  from 'react-google-places-autocomplete';
 import { useDispatch,useSelector } from "react-redux";
 import { completeUserProfile } from "../features/featureActions/Actions";
 // import { useNavigate,useLocation } from "react-router-dom";
@@ -204,7 +204,7 @@ const CompleteProfile = () => {
                                   Address
                                 </Form.Label>
                                 <InputGroup hasValidation>
-                                  <Form.Control
+                                  {/* <Form.Control
                                     type="text"
                                     placeholder="Please enter your address"
                                     aria-describedby="inputGroupAddress"
@@ -218,9 +218,9 @@ const CompleteProfile = () => {
                                   />
                                   <Form.Control.Feedback type="invalid">
                                     {errors.address}
-                                  </Form.Control.Feedback>
-                                  {/* <GooglePlacesAutocomplete
-                                  apiKey="AIzaSyDJfOIDyCievPs5lZh0xq9BOOM_OhvTYXY"
+                                  </Form.Control.Feedback> */}
+                                  <GooglePlacesAutocomplete
+                                  apiKey={import.meta.env.VITE_API_KEY}
                                   selectProps={{
                                     values,
                                     onChange: (value) => setFieldValue('address', value),
@@ -231,7 +231,7 @@ const CompleteProfile = () => {
                                   <Form.Text className="text-danger">
                                     {errors.address.label}
                                   </Form.Text>
-                                )} */}
+                                )}
                                 </InputGroup>
                                 {/* {touched.address && errors.address ? (
                                   <Form.Text className="text-danger">
