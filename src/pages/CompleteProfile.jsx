@@ -29,7 +29,7 @@ const CompleteProfile = () => {
   const SubmitForm = async (values, { resetForm }) => {
     try {
      // Extracting the address value
-    const selectedAddress = values.address.label;
+    const selectedAddress = values?.address?.label;
      // Extracting the address lat long
     const results = await geocodeByAddress(selectedAddress);
     const {lat,lng} = await getLatLng(results[0]);
@@ -118,7 +118,7 @@ const CompleteProfile = () => {
                           phone: user.phone,
                           image: null,
                           address: {
-                            label:user.location.address
+                            label:user.location.address ? user.location.address : null
                           }, // for GooglePlacesAutocomplete should be null
                         }}
                       >
@@ -244,17 +244,18 @@ const CompleteProfile = () => {
                                           setFieldValue("address", value)
                                         },
                                         placeholder: "Select address",
-                                        defaultInputValue:values.address.label,
+                                        defaultInputValue:values?.address?.label,
+                                        isClearable:true,
                                         styles:{
                                           input: (provided) => ({
                                             ...provided,
                                             // color: 'blue',
-                                            // width: "100%" // Set the input's width to 100%
+                                            width: "100%" // Set the input's width to 100%
                                           }),
-                                          // control: (baseStyles, state) => ({
-                                          //   ...baseStyles,
-                                          //   borderColor: state.isFocused ? 'grey' : 'red',  
-                                          // }),
+                                          control: (baseStyles, state) => ({
+                                            ...baseStyles,
+                                            // borderColor: state.isFocused ? 'grey' : 'red',  
+                                          }),
                                         }
                                       }}
                                       onBlur={handleBlur}
