@@ -12,39 +12,39 @@ import defautImage from "../assets/default-image.jpg";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
-import  GooglePlacesAutocomplete  from 'react-google-places-autocomplete';
-import { useDispatch,useSelector } from "react-redux";
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import { useDispatch, useSelector } from "react-redux";
 import { completeUserProfile } from "../features/featureActions/Actions";
 // import { useNavigate,useLocation } from "react-router-dom";
 import { getUser } from "../features/slices/AuthSlice";
 
 const CompleteProfile = () => {
   const [profileImage, setProfileImage] = useState([]);
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   // const navigate=useNavigate();
   // const location=useLocation();
   // const userId=location?.state?.userId ? location?.state?.userId : null
-  const user=useSelector(getUser)
-  const SubmitForm = async(values, { resetForm }) => {
-    try{
-      console.log("address",values.address)
-      var formData = new FormData()
+  const user = useSelector(getUser);
+  const SubmitForm = async (values, { resetForm }) => {
+    try {
+      console.log("address", values.address);
+      var formData = new FormData();
       const appendIfValue = (key, value) => {
-        if (value !== undefined && value.trim() !== '') {
-            formData.append(key, value);
+        if (value !== undefined && value.trim() !== "") {
+          formData.append(key, value);
         }
-    };
-    appendIfValue("name",values.name);
-    appendIfValue("phone",values.phone);
-    // appendIfValue("_id",userId);
-    // appendIfValue("address",values.address);
-    // formData.append("profileImage",values.image)
-    console.log("value image",values.image)
-    if (values?.image?.length >= 1) {
-      values.image.forEach((img) => {
-        formData.append(`profileImage`, img);
-      });
-    }
+      };
+      appendIfValue("name", values.name);
+      appendIfValue("phone", values.phone);
+      // appendIfValue("_id",userId);
+      // appendIfValue("address",values.address);
+      // formData.append("profileImage",values.image)
+      console.log("value image", values.image);
+      if (values?.image?.length >= 1) {
+        values.image.forEach((img) => {
+          formData.append(`profileImage`, img);
+        });
+      }
       let payload = {
         body: formData,
         params: false,
@@ -53,9 +53,7 @@ const CompleteProfile = () => {
       await dispatch(completeUserProfile(payload)).unwrap();
       // navigate("/home")
       // resetForm();
-    }catch(rejectedValueOrSerializedError){
-
-    }
+    } catch (rejectedValueOrSerializedError) {}
   };
 
   const phoneRegExp =
@@ -112,7 +110,7 @@ const CompleteProfile = () => {
                         initialValues={{
                           name: user.name,
                           phone: user.phone,
-                          image:null,
+                          image: null,
                           address: user.location.address, // for GooglePlacesAutocomplete should be null
                         }}
                       >
@@ -186,8 +184,9 @@ const CompleteProfile = () => {
                                     onChange={(value) =>
                                       setFieldValue("phone", value)
                                     }
-                                    className="w-75 p-2 rounded"
+                                    className="p-2 rounded"
                                     onBlur={handleBlur}
+                                    style={{ width: "80%" }}
                                   />
                                   {errors.phone && touched.phone ? (
                                     <AiOutlineExclamationCircle className=" fs-5 mx-2 text-end text-danger" />
@@ -204,8 +203,16 @@ const CompleteProfile = () => {
                                 <Form.Label className="my-2">
                                   Address
                                 </Form.Label>
-                                <InputGroup hasValidation>
-                                  {/* <Form.Control
+                                <div className="d-flex align-items-center justify-content-between">
+                                  <InputGroup
+                                    hasValidation
+                                    id={
+                                      errors.address && touched.address
+                                        ? "addressError"
+                                        : null
+                                    }
+                                  >
+                                    {/* <Form.Control
                                     type="text"
                                     placeholder="Please enter your address"
                                     aria-describedby="inputGroupAddress"
@@ -220,25 +227,26 @@ const CompleteProfile = () => {
                                   <Form.Control.Feedback type="invalid">
                                     {errors.address}
                                   </Form.Control.Feedback> */}
-                                  <GooglePlacesAutocomplete
-                                  apiKey={import.meta.env.VITE_API_KEY}
-                                  selectProps={{
-                                    values,
-                                    onChange: (value) => setFieldValue('address', value),
-                                    placeholder: 'Select address',
-                                  }}
-                                />
-                                {/* {errors.address && (
-                                  <Form.Text className="text-danger">
-                                    {errors.address.label}
-                                  </Form.Text>
-                                )} */}
-                                </InputGroup>
-                                {/* {touched.address && errors.address ? (
+                                    <GooglePlacesAutocomplete
+                                      apiKey={import.meta.env.VITE_API_KEY}
+                                      selectProps={{
+                                        values,
+                                        onChange: (value) =>
+                                          setFieldValue("address", value),
+                                        placeholder: "Select address",
+                                      }}
+                                      onBlur={handleBlur}
+                                    />
+                                  </InputGroup>
+                                  {errors.address && touched.address ? (
+                                    <AiOutlineExclamationCircle className=" fs-1 mx-2 text-end text-danger" />
+                                  ) : null}
+                                </div>
+                                {touched.address && errors.address ? (
                                   <Form.Text className="text-danger">
                                     {errors.address}
                                   </Form.Text>
-                                ):null} */}
+                                ) : null}
                               </Form.Group>
 
                               <Form.Group as={Col} lg={12} controlId="image">
@@ -253,11 +261,14 @@ const CompleteProfile = () => {
                                     aria-describedby="inputGroupImage"
                                     onChange={(event) => {
                                       // const filesArray = Array.from(event.currentTarget.files);
-                                      const fileList=event.currentTarget.files
+                                      const fileList =
+                                        event.currentTarget.files;
                                       // console.log(Array.isArray(fileList),fileList);
                                       // console.log(Array.isArray([...fileList]),[...fileList]);
                                       const filesArray = [...fileList];
-                                      setProfileImage((prev)=>[...filesArray]);
+                                      setProfileImage((prev) => [
+                                        ...filesArray,
+                                      ]);
                                       setFieldValue("image", filesArray);
                                     }}
                                     onBlur={handleBlur}
