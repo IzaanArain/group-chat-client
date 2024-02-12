@@ -13,6 +13,7 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import { geocodeByAddress, getLatLng,geocodeByPlaceId } from 'react-google-places-autocomplete';
 import { useDispatch, useSelector } from "react-redux";
 import { completeUserProfile } from "../features/featureActions/Actions";
 // import { useNavigate,useLocation } from "react-router-dom";
@@ -27,7 +28,11 @@ const CompleteProfile = () => {
   const user = useSelector(getUser);
   const SubmitForm = async (values, { resetForm }) => {
     try {
-      console.log("address", values.address);
+     // Extracting the address value
+    const selectedAddress = values.address.label;
+     // Extracting the address lat long
+    const results = await geocodeByAddress(selectedAddress);
+    const {lat,lng} = await getLatLng(results[0]);
       var formData = new FormData();
       const appendIfValue = (key, value) => {
         if (value !== undefined && value.trim() !== "") {
@@ -37,9 +42,10 @@ const CompleteProfile = () => {
       appendIfValue("name", values.name);
       appendIfValue("phone", values.phone);
       // appendIfValue("_id",userId);
-      // appendIfValue("address",values.address);
+      appendIfValue("address",selectedAddress);
+      formData.append("lat",lat);
+      formData.append("long",lng);
       // formData.append("profileImage",values.image)
-      console.log("value image", values.image);
       if (values?.image?.length >= 1) {
         values.image.forEach((img) => {
           formData.append(`profileImage`, img);
@@ -111,7 +117,9 @@ const CompleteProfile = () => {
                           name: user.name,
                           phone: user.phone,
                           image: null,
-                          address: user.location.address, // for GooglePlacesAutocomplete should be null
+                          address: {
+                            label:user.location.address
+                          }, // for GooglePlacesAutocomplete should be null
                         }}
                       >
                         {({
@@ -206,11 +214,12 @@ const CompleteProfile = () => {
                                 <div className="d-flex align-items-center justify-content-between">
                                   <InputGroup
                                     hasValidation
-                                    id={
-                                      errors.address && touched.address
-                                        ? "addressError"
-                                        : null
-                                    }
+                                    // id={
+                                    //   errors.address && touched.address
+                                    //     ? "addressError"
+                                    //     : null
+                                    // }
+                                    // style={{width:"100%"}}
                                   >
                                     {/* <Form.Control
                                     type="text"
@@ -231,9 +240,22 @@ const CompleteProfile = () => {
                                       apiKey={import.meta.env.VITE_API_KEY}
                                       selectProps={{
                                         values,
-                                        onChange: (value) =>
-                                          setFieldValue("address", value),
+                                        onChange: (value) =>{
+                                          setFieldValue("address", value)
+                                        },
                                         placeholder: "Select address",
+                                        defaultInputValue:values.address.label,
+                                        styles:{
+                                          input: (provided) => ({
+                                            ...provided,
+                                            // color: 'blue',
+                                            // width: "100%" // Set the input's width to 100%
+                                          }),
+                                          // control: (baseStyles, state) => ({
+                                          //   ...baseStyles,
+                                          //   borderColor: state.isFocused ? 'grey' : 'red',  
+                                          // }),
+                                        }
                                       }}
                                       onBlur={handleBlur}
                                     />
