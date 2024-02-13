@@ -283,7 +283,7 @@ const CompleteProfile = () => {
                                     }
                                     className="p-2 rounded"
                                     onBlur={handleBlur}
-                                    style={{ width: "80%" }}
+                                    style={{ width: "90%" }}
                                   />
                                   {errors.phone && touched.phone ? (
                                     <AiOutlineExclamationCircle className=" fs-5 mx-2 text-end text-danger" />
