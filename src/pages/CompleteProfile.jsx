@@ -182,6 +182,7 @@ const CompleteProfile = () => {
                                           background:"#30D5C8",
                                           borderRadius:"100%",
                                           padding:"5px",
+                                          color:"white"
                                         }}
                                         className="shadow-lg"
                                       />
