@@ -198,10 +198,7 @@ const CompleteProfile = () => {
                                       aria-describedby="inputGroupImage"
                                       onChange={(event) => {
                                         // const filesArray = Array.from(event.currentTarget.files);
-                                        const fileList =
-                                          event.currentTarget.files;
-                                        // console.log(Array.isArray(fileList),fileList);
-                                        // console.log(Array.isArray([...fileList]),[...fileList]);
+                                        const fileList = event.currentTarget.files;
                                         const filesArray = [...fileList];
                                         setProfileImage((prev) => [
                                           ...filesArray,
