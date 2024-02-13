@@ -179,7 +179,7 @@ const CompleteProfile = () => {
                                           position: "absolute",
                                           left: "110px",
                                           bottom: "10px",
-                                          background:"white",
+                                          background:"#30D5C8",
                                           borderRadius:"100%",
                                           padding:"5px",
                                         }}
