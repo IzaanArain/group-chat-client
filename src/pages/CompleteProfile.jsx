@@ -12,12 +12,18 @@ import defautImage from "../assets/default-image.jpg";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { MdCloudUpload } from "react-icons/md";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
-import { geocodeByAddress, getLatLng,geocodeByPlaceId } from 'react-google-places-autocomplete';
+import {
+  geocodeByAddress,
+  getLatLng,
+  geocodeByPlaceId,
+} from "react-google-places-autocomplete";
 import { useDispatch, useSelector } from "react-redux";
 import { completeUserProfile } from "../features/featureActions/Actions";
 // import { useNavigate,useLocation } from "react-router-dom";
 import { getUser } from "../features/slices/AuthSlice";
+import UploadIcon from "../assets/UploadIcon";
 
 const CompleteProfile = () => {
   const [profileImage, setProfileImage] = useState([]);
@@ -28,11 +34,11 @@ const CompleteProfile = () => {
   const user = useSelector(getUser);
   const SubmitForm = async (values, { resetForm }) => {
     try {
-     // Extracting the address value
-    const selectedAddress = values?.address?.label;
-     // Extracting the address lat long
-    const results = await geocodeByAddress(selectedAddress);
-    const {lat,lng} = await getLatLng(results[0]);
+      // Extracting the address value
+      const selectedAddress = values?.address?.label;
+      // Extracting the address lat long
+      const results = await geocodeByAddress(selectedAddress);
+      const { lat, lng } = await getLatLng(results[0]);
       var formData = new FormData();
       const appendIfValue = (key, value) => {
         if (value !== undefined && value.trim() !== "") {
@@ -42,9 +48,9 @@ const CompleteProfile = () => {
       appendIfValue("name", values.name);
       appendIfValue("phone", values.phone);
       // appendIfValue("_id",userId);
-      appendIfValue("address",selectedAddress);
-      formData.append("lat",lat);
-      formData.append("long",lng);
+      appendIfValue("address", selectedAddress);
+      formData.append("lat", lat);
+      formData.append("long", lng);
       // formData.append("profileImage",values.image)
       if (values?.image?.length >= 1) {
         values.image.forEach((img) => {
@@ -88,7 +94,7 @@ const CompleteProfile = () => {
           <Col lg={6} xl={4}>
             {/* d-flex align-items-center */}
             <Card className="shadow my-5 ">
-              <Row>
+              {/* <Row>
                 <Col className="d-flex justify-content-center">
                   <Card.Img
                     className="rounded-circle shadow border mt-4"
@@ -103,7 +109,7 @@ const CompleteProfile = () => {
                     style={{ width: "150px", height: "150px" }}
                   />
                 </Col>
-              </Row>
+              </Row> */}
               <Row>
                 <Col>
                   <Card.Body>
@@ -114,12 +120,14 @@ const CompleteProfile = () => {
                           SubmitForm(values, { resetForm });
                         }}
                         initialValues={{
-                          name: user.name,
+                          name: user?.name,
                           phone: user.phone,
+                          // phone: null,
                           image: null,
+                          // address: null,
                           address: {
-                            label:user.location.address ? user.location.address : null
-                          }, // for GooglePlacesAutocomplete should be null
+                            label: user?.location?.address,
+                          },
                         }}
                       >
                         {({
@@ -134,6 +142,87 @@ const CompleteProfile = () => {
                           <Form noValidate onSubmit={handleSubmit}>
                             {/* <Row className="mb-3" md={1} lg={1}> */}
                             <Row className="mb-4 px-4">
+                              <Form.Group
+                                as={Col}
+                                lg={12}
+                                controlId="image"
+                                className="my-2 d-flex flex-column justify-content-center align-items-center"
+                              >
+                                {/* <Form.Label className="my-2">
+                                  Upload Image
+                                </Form.Label> */}
+                                <Form.Label>
+                                  <InputGroup hasValidation>
+                                    <div className="position-relative">
+                                      <Card.Img
+                                        className="rounded-circle shadow border mt-4"
+                                        variant="top"
+                                        src={
+                                          user.profileImage &&
+                                          profileImage.length === 0
+                                            ? `${
+                                                import.meta.env.VITE_API_URL
+                                              }/${user.profileImage}`
+                                            : profileImage.length >= 1
+                                            ? URL.createObjectURL(
+                                                profileImage[0]
+                                              )
+                                            : defautImage
+                                        }
+                                        style={{
+                                          width: "150px",
+                                          height: "150px",
+                                        }}
+                                      />
+                                      {/* <UploadIcon/> */}
+                                    
+                                     <MdCloudUpload
+                                        style={{
+                                          width: "40px",
+                                          height: "40px",
+                                          position: "absolute",
+                                          left: "110px",
+                                          bottom: "10px",
+                                          background:"white",
+                                          borderRadius:"100%",
+                                          padding:"5px",
+                                        }}
+                                        className="shadow-lg"
+                                      />
+                                    </div>
+                                    <Form.Control
+                                      className="d-none"
+                                      type="file"
+                                      multiple
+                                      name="image"
+                                      aria-describedby="inputGroupImage"
+                                      onChange={(event) => {
+                                        // const filesArray = Array.from(event.currentTarget.files);
+                                        const fileList =
+                                          event.currentTarget.files;
+                                        // console.log(Array.isArray(fileList),fileList);
+                                        // console.log(Array.isArray([...fileList]),[...fileList]);
+                                        const filesArray = [...fileList];
+                                        setProfileImage((prev) => [
+                                          ...filesArray,
+                                        ]);
+                                        setFieldValue("image", filesArray);
+                                      }}
+                                      onBlur={handleBlur}
+                                      // isInvalid={touched.image && !!errors.image}
+                                    />
+                                    {/* <Form.Control.Feedback type="invalid">
+                                      {errors.image}
+                                    </Form.Control.Feedback> */}
+                                  </InputGroup>
+                                </Form.Label>
+                                {touched.image && errors.image ? (
+                                  <Form.Text className="text-danger">
+                                    {errors.image}
+                                  </Form.Text>
+                                ) : null}
+                              </Form.Group>
+
                               <Form.Group as={Col} lg={12} controlId="name">
                                 <Form.Label className="my-2">Name</Form.Label>
                                 <InputGroup hasValidation>
@@ -214,12 +303,11 @@ const CompleteProfile = () => {
                                 <div className="d-flex align-items-center justify-content-between">
                                   <InputGroup
                                     hasValidation
-                                    // id={
-                                    //   errors.address && touched.address
-                                    //     ? "addressError"
-                                    //     : null
-                                    // }
-                                    // style={{width:"100%"}}
+                                    id={
+                                      errors.address && touched.address
+                                        ? "addressError"
+                                        : null
+                                    }
                                   >
                                     {/* <Form.Control
                                     type="text"
@@ -240,23 +328,23 @@ const CompleteProfile = () => {
                                       apiKey={import.meta.env.VITE_API_KEY}
                                       selectProps={{
                                         values,
-                                        onChange: (value) =>{
-                                          setFieldValue("address", value)
+                                        onChange: (value) => {
+                                          setFieldValue("address", value);
                                         },
                                         placeholder: "Select address",
-                                        defaultInputValue:values?.address?.label,
-                                        isClearable:true,
-                                        styles:{
+                                        defaultInputValue:
+                                          values?.address?.label,
+                                        isClearable: true,
+                                        styles: {
                                           input: (provided) => ({
                                             ...provided,
-                                            // color: 'blue',
-                                            width: "100%" // Set the input's width to 100%
+                                            // color: "blue",
                                           }),
                                           control: (baseStyles, state) => ({
                                             ...baseStyles,
-                                            // borderColor: state.isFocused ? 'grey' : 'red',  
+                                            // borderColor: state.isFocused ? 'grey' : 'red',
                                           }),
-                                        }
+                                        },
                                       }}
                                       onBlur={handleBlur}
                                     />
@@ -270,42 +358,6 @@ const CompleteProfile = () => {
                                     {errors.address}
                                   </Form.Text>
                                 ) : null}
-                              </Form.Group>
-
-                              <Form.Group as={Col} lg={12} controlId="image">
-                                <Form.Label className="my-2">
-                                  Upload Image
-                                </Form.Label>
-                                <InputGroup hasValidation>
-                                  <Form.Control
-                                    type="file"
-                                    multiple
-                                    name="image"
-                                    aria-describedby="inputGroupImage"
-                                    onChange={(event) => {
-                                      // const filesArray = Array.from(event.currentTarget.files);
-                                      const fileList =
-                                        event.currentTarget.files;
-                                      // console.log(Array.isArray(fileList),fileList);
-                                      // console.log(Array.isArray([...fileList]),[...fileList]);
-                                      const filesArray = [...fileList];
-                                      setProfileImage((prev) => [
-                                        ...filesArray,
-                                      ]);
-                                      setFieldValue("image", filesArray);
-                                    }}
-                                    onBlur={handleBlur}
-                                    isInvalid={touched.image && !!errors.image}
-                                  />
-                                  <Form.Control.Feedback type="invalid">
-                                    {errors.image}
-                                  </Form.Control.Feedback>
-                                </InputGroup>
-                                {/* {touched.image && errors.image ? (
-                                  <Form.Text className="text-danger">
-                                    {errors.image}
-                                  </Form.Text>
-                                ):null} */}
                               </Form.Group>
                             </Row>
                             <Row className="mb-4 px-4">
