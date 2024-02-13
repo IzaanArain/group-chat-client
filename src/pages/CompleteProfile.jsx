@@ -328,6 +328,7 @@ const CompleteProfile = () => {
                                         placeholder: "Select address",
                                         defaultInputValue:values?.address?.label,
                                         isClearable: true,
+                                        menuPlacement:"top",
                                         styles: {
                                           input: (provided) => ({
                                             ...provided,
