@@ -160,13 +160,9 @@ const CompleteProfile = () => {
                                         src={
                                           user.profileImage &&
                                           profileImage.length === 0
-                                            ? `${
-                                                import.meta.env.VITE_API_URL
-                                              }/${user.profileImage}`
+                                            ? `${import.meta.env.VITE_API_URL}/${user.profileImage}`
                                             : profileImage.length >= 1
-                                            ? URL.createObjectURL(
-                                                profileImage[0]
-                                              )
+                                            ? URL.createObjectURL(profileImage[0])
                                             : defautImage
                                         }
                                         style={{
@@ -329,8 +325,7 @@ const CompleteProfile = () => {
                                           setFieldValue("address", value);
                                         },
                                         placeholder: "Select address",
-                                        defaultInputValue:
-                                          values?.address?.label,
+                                        defaultInputValue:values?.address?.label,
                                         isClearable: true,
                                         styles: {
                                           input: (provided) => ({
