@@ -181,7 +181,7 @@ const CompleteProfile = () => {
                                           bottom: "10px",
                                           background:"#0d6efd",
                                           borderRadius:"100%",
-                                          padding:"5px",
+                                          padding:"6px",
                                           color:"white",
                                         }}
                                         className="shadow-lg"
