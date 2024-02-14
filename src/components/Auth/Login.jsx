@@ -17,21 +17,27 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const { Formik } = formik;
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const dispatch=useDispatch();
-  const navigate=useNavigate();
-  const SubmitForm = async(values, { resetForm }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const SubmitForm = async (values, { resetForm }) => {
     // e.preventDefault();
-    try{
+    try {
       let payload = {
         body: values,
         params: false,
         isToast: true,
       };
-      await dispatch(loginUser(payload)).unwrap()
-      navigate("/chats")
-      resetForm()
-    }catch(rejectedValueOrSerializedError){
+      const user = await dispatch(loginUser(payload)).unwrap();
+      console.log(user?.data?.data);
+      if (user?.data?.data?.isVerified === 1) {
+        navigate("/chats");
+      } else {
+        navigate("/verifyAccount", {
+          state: { userId: user?.data?.data?._id },
+        });
+      }
+      resetForm();
+    } catch (rejectedValueOrSerializedError) {
       // resetForm();
     }
   };
@@ -104,11 +110,18 @@ const Login = () => {
                       required
                     />
                     <InputGroup.Text>
-                      <button type="button" onClick={(e)=>{
-                        e.preventDefault()
-                        setShowPassword(!showPassword)
-                      }}>
-                        {showPassword ?   <FaRegEyeSlash style={{ fontSize: "1.5rem" }}/>  : <FaRegEye style={{ fontSize: "1.5rem" }}/>}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setShowPassword(!showPassword);
+                        }}
+                      >
+                        {showPassword ? (
+                          <FaRegEyeSlash style={{ fontSize: "1.5rem" }} />
+                        ) : (
+                          <FaRegEye style={{ fontSize: "1.5rem" }} />
+                        )}
                       </button>
                     </InputGroup.Text>
                     <Form.Control.Feedback type="invalid">
