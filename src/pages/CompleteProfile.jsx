@@ -155,7 +155,7 @@ const CompleteProfile = () => {
                                   <InputGroup hasValidation>
                                     <div className="position-relative">
                                       <Card.Img
-                                        className="rounded-circle shadow border mt-4"
+                                        className="rounded-circle shadow border mt-4 border border-primary border-3"
                                         variant="top"
                                         src={
                                           user.profileImage &&
@@ -182,7 +182,7 @@ const CompleteProfile = () => {
                                           background:"#0d6efd",
                                           borderRadius:"100%",
                                           padding:"5px",
-                                          color:"white"
+                                          color:"white",
                                         }}
                                         className="shadow-lg"
                                       />
