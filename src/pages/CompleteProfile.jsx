@@ -146,7 +146,7 @@ const CompleteProfile = () => {
                                 as={Col}
                                 lg={12}
                                 controlId="image"
-                                className="my-2 d-flex flex-column justify-content-center align-items-center"
+                                className="d-flex mt-4 flex-column justify-content-center align-items-center"
                               >
                                 {/* <Form.Label className="my-2">
                                   Upload Image
@@ -155,7 +155,7 @@ const CompleteProfile = () => {
                                   <InputGroup hasValidation>
                                     <div className="position-relative">
                                       <Card.Img
-                                        className="rounded-circle shadow border mt-4 border border-primary border-3"
+                                        className="rounded-circle shadow border border border-primary border-3"
                                         variant="top"
                                         src={
                                           user.profileImage &&
