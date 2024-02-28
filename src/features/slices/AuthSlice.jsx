@@ -25,7 +25,6 @@ const authSlice = createSlice({
       //pending
       .addMatcher(
         (action) => action.type.endsWith("/pending"),
-
         (state, action) => {
           state.isLoading = true;
           state.isError = false;
@@ -38,7 +37,10 @@ const authSlice = createSlice({
       )
       //fulfilled
       .addMatcher(
-        (action) => action.type.endsWith("/fulfilled"),
+        (action) => {
+          console.log(action.type);
+          return action.type.endsWith("/fulfilled")
+        },
         (state, action) => {
           state.isLoading = false;
           state.isError = false;
@@ -50,6 +52,7 @@ const authSlice = createSlice({
               break;
             case "completeProfile/fulfilled":
               state.user = action.payload.data.data;
+              break;
             default:
               console.log("Unknown action/fulfilled");
               break;

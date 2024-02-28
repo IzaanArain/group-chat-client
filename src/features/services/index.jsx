@@ -10,7 +10,7 @@ export const postRequest=(apiEndpoint,thunkName)=>{
         async({body,params,isToast},{rejectWithValue})=>{
             try{
                 const endpoint = params ? `${apiEndpoint}${params}` : apiEndpoint;
-                const res=await axios.post(endpoint,body);
+                const res = await axios.post(endpoint,body);
                 if (isToast) {
                     toast.success(res?.data?.message);
                 }

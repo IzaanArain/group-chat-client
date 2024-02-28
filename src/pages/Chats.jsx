@@ -3,8 +3,8 @@ import React from 'react'
 const Chats = () => {
   return (
    <>
-    <div>
-        <h1>Chats page</h1>
+    <div style={{width:"100%"}}>
+      
     </div>
    </>
   )
