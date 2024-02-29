@@ -1,9 +1,9 @@
 import React from 'react'
 
-const MessageInput = () => {
+const ChatInput = () => {
   return (
     <div>MessageInput</div>
   )
 }
 
-export default MessageInput
+export default ChatInput

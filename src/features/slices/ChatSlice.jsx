@@ -6,6 +6,7 @@ const initialState = {
     status: null,
     groups:[],
     chats: [],
+    messages:[]
   };
 
   const groupChatSlice = createSlice({
