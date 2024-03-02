@@ -38,7 +38,7 @@ const authSlice = createSlice({
       //fulfilled
       .addMatcher(
         (action) => {
-          console.log(action.type);
+          // console.log(action.type);
           return action.type.endsWith("/fulfilled")
         },
         (state, action) => {
