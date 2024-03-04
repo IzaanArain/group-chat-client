@@ -1,6 +1,6 @@
 import { configureStore,combineReducers } from "@reduxjs/toolkit";
 import userReducer from "../features/slices/AuthSlice"
-import persistConfig from "../app/index";
+import persistConfig from "./index";
 import { persistStore, persistReducer } from 'redux-persist';
 import axios from "axios";
 // import thunk from 'redux-thunk';
