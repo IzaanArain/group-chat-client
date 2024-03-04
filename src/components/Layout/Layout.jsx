@@ -6,7 +6,7 @@ import CompleteProfile from "../../pages/CompleteProfile";
 import VerifyAccount from "../../pages/VerifyAccount";
 import { useSelector } from "react-redux";
 import { getUser, getUserStatus } from "../../features/slices/AuthSlice";
-
+import Nav from "./Nav";
 const Layout = () => {
   const user = useSelector(getUser);
   const status = useSelector(getUserStatus);
@@ -30,6 +30,7 @@ const Layout = () => {
         )} */}
         {
           user?.token && user?.isProfileCompleted===1 && status!==401 ? (<>
+          <Nav/>
           <Routes>
             <Route path="/completeProfile" excat element={<CompleteProfile />}/>
             <Route path="/chats" excat element={<Chats />} />
