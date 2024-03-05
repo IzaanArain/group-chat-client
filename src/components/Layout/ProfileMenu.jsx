@@ -16,21 +16,21 @@ const ProfileMenu = () => {
   return (
     <>
       <div className="d-flex justify-content-center align-items-center">
-        <div className="px-5">
+        <div className="pe-3">
           <FaBell style={{ fontSize: "25px" }} />
         </div>
         <div id="profile menu">
-          <Dropdown as={ButtonGroup} className="shadow">
+          <Dropdown as={ButtonGroup}>
             <OverlayTrigger
-              trigger="click"
+              // trigger="click"
               placement="bottom"
-              // delay={{ show: 250, hide: 400 }}
+              delay={{ show: 250, hide: 400 }}
               // overlay={<PopoverTooltips name={user.name} />}
               overlay={
                 <Popover id="popover-basic">
                   <Popover.Header
                     as="h3"
-                    className="d-flex align-items-center"
+                    className="px-2 py-3 d-flex align-items-center justify-content-center"
                   >
                     <Image
                     src={`${import.meta.env.VITE_API_URL}/${user.profileImage}`}
