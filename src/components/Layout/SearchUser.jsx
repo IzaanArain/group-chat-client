@@ -17,7 +17,7 @@ const SearchUser = () => {
           // overlay={renderTooltip}
           overlay={<RenderTooltips id="button-tooltip"  content="Search users to chat" />}
         >
-          <button style={{fontSize:"17px"}} type="button" className="border border-0 btn btn-outline-dark d-flex align-items-center ">
+          <button style={{fontSize:"17px"}} type="button" className="shadow border border-0 btn btn-outline-dark d-flex align-items-center ">
             <FaSearch />
             <span  style={{fontWeight:"bold"}} className="d-none d-sm-block px-2">Search User</span>
           </button>
