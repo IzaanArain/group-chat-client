@@ -53,6 +53,9 @@ const authSlice = createSlice({
             case "completeProfile/fulfilled":
               state.user = action.payload.data.data;
               break;
+            case "signout/fulfilled":
+              state.user = null;
+              break;
             default:
               console.log("Unknown action/fulfilled");
               break;

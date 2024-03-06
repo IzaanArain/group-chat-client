@@ -11,7 +11,7 @@ import { OverlayTrigger } from "react-bootstrap";
 import RenderTooltips from "../RenderTooltips";
 import PopoverTooltips from "../PopoverTooltips";
 import Popover from "react-bootstrap/Popover";
-
+import Logout from "../Modal/Logout";
 const ProfileMenu = () => {
   const user = useSelector(getUser);
   return (
@@ -20,20 +20,20 @@ const ProfileMenu = () => {
         <div className="pe-3">
           <FaBell style={{ fontSize: "25px" }} />
         </div>
-        <div id="profile menu">
-          <Dropdown as={ButtonGroup}>
-            <OverlayTrigger
-              // trigger="click"
-              placement="bottom"
-              delay={{ show: 250, hide: 400 }}
-              // overlay={<PopoverTooltips name={user.name} />}
-              overlay={
-                <Popover id="popover-basic">
-                  <Popover.Header
-                    as="h3"
-                    className="py-3 d-flex align-items-center justify-content-center"
-                  >
-                    <Image
+        <div className="pe-2">
+          <OverlayTrigger
+            // trigger="click"
+            placement="bottom"
+            delay={{ show: 250, hide: 400 }}
+            // overlay={<RenderTooltips content={user.name}/>}
+            // overlay={<PopoverTooltips name={user.name} />}
+            overlay={
+              <Popover id="popover-basic">
+                <Popover.Header
+                  as="h3"
+                  className="py-3 d-flex align-items-center justify-content-center"
+                >
+                  <Image
                     src={`${import.meta.env.VITE_API_URL}/${user.profileImage}`}
                     alt=""
                     width={"100px"}
@@ -41,56 +41,37 @@ const ProfileMenu = () => {
                     roundedCircle
                   />
                   <span className="ps-3">{user.name}</span>
-                  </Popover.Header>
-                  <Popover.Body>
-                    And here's some <strong>amazing</strong> content. It's very
-                    engaging. right?
-                  </Popover.Body>
-                </Popover>
-              }>
-              {({ ref, ...triggerHandler }) => (
-                <Button
-                  variant="transparent"
-                  {...triggerHandler}
-                  //  className="d-flex align-items-center"
-                  className="d-inline-flex align-items-center"
-                >
-                  <Image
-                    ref={ref}
-                    src={`${import.meta.env.VITE_API_URL}/${user.profileImage}`}
-                    alt=""
-                    width={"30px"}
-                    height={"30px"}
-                    //  className="rounded-circle"
-                    roundedCircle
-                  />
-                  <span className="px-2">{user.name}</span>
-                </Button>
-              )}
-              {/* <Button
-                variant="transparent"
-                className="d-flex align-items-center"
-              >
-                <img
-                  src={`${import.meta.env.VITE_API_URL}/${user.profileImage}`}
-                  alt=""
-                  width={"30px"}
-                  height={"30px"}
-                  className="rounded-circle"
-                />
-                <span className="px-2">{user.name}</span>
-              </Button> */}
-            </OverlayTrigger>
-            <Dropdown.Toggle
-              split
-              variant="transparent"
-              id="dropdown-split-basic"
-              className="px-3"
-            />
-            <Dropdown.Menu className="w-100">
-              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                </Popover.Header>
+                <Popover.Body>
+                  And here's some <strong>amazing</strong> content. It's very
+                  engaging. right?
+                </Popover.Body>
+              </Popover>
+            }
+          >
+            {({ ref, ...triggerHandler }) => (
+              <Image
+                ref={ref}
+                src={`${import.meta.env.VITE_API_URL}/${user.profileImage}`}
+                alt=""
+                width={"30px"}
+                height={"30px"}
+                //  className="rounded-circle"
+                roundedCircle
+                {...triggerHandler}
+              />
+            )}
+          </OverlayTrigger>
+        </div>
+        <div id="profile menu">
+          <Dropdown as={ButtonGroup}>
+            <Dropdown.Toggle variant="transparent" id="dropdown-basic">
+              <span className="pe-2">{user.name}</span>
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item href="/completeProfile">My Profile</Dropdown.Item>
+              <Dropdown.Item href="/chats">Chat</Dropdown.Item>
+              <Dropdown.Item ><Logout/></Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </div>

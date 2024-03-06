@@ -9,7 +9,7 @@ const Nav = () => {
         <span
           style={{
             fontFamily: "Work sans",
-            fontSize: "25px",
+            fontSize: "1.5rem",
             fontWeight: "bold",
           }}
         >
