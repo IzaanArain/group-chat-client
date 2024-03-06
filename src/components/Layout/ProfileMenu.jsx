@@ -11,6 +11,7 @@ import { OverlayTrigger } from "react-bootstrap";
 import RenderTooltips from "../RenderTooltips";
 import PopoverTooltips from "../PopoverTooltips";
 import Popover from "react-bootstrap/Popover";
+
 const ProfileMenu = () => {
   const user = useSelector(getUser);
   return (
@@ -30,7 +31,7 @@ const ProfileMenu = () => {
                 <Popover id="popover-basic">
                   <Popover.Header
                     as="h3"
-                    className="px-2 py-3 d-flex align-items-center justify-content-center"
+                    className="py-3 d-flex align-items-center justify-content-center"
                   >
                     <Image
                     src={`${import.meta.env.VITE_API_URL}/${user.profileImage}`}
@@ -39,15 +40,14 @@ const ProfileMenu = () => {
                     height={"100px"}
                     roundedCircle
                   />
-                  <span className="px-3">{user.name}</span>
+                  <span className="ps-3">{user.name}</span>
                   </Popover.Header>
                   <Popover.Body>
                     And here's some <strong>amazing</strong> content. It's very
                     engaging. right?
                   </Popover.Body>
                 </Popover>
-              }
-            >
+              }>
               {({ ref, ...triggerHandler }) => (
                 <Button
                   variant="transparent"
