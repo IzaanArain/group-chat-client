@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../features/featureActions/Actions";
+import { MdCancel } from "react-icons/md";
 const customStyles = {
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)'
@@ -27,7 +28,6 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 const Logout = ({type,componentStyle}) => {
-  let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
   const dispatch=useDispatch();
 
@@ -69,12 +69,33 @@ const Logout = ({type,componentStyle}) => {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <div className="d-flex justify-content-center align-items-center border border-end">
-          <span >Are you sure you want to logout</span>
+        <div className="d-flex justify-content-end">
+          <button className="p-2 text-danger" onClick={closeModal}>
+            <MdCancel style={{ fontSize: "30px" }} />
+          </button>
         </div>
-        <div className="d-flex justify-content-around align-items-center">
-        <Button className="" variant="primary" size="lg" onClick={logoutAction}>Logout</Button>
-        <Button className="" variant="danger" size="lg" onClick={closeModal}>Cancel</Button>
+        <div className="h-25 d-flex justify-content-center align-items-center p-2">
+          <span style={{ fontSize: "1.5rem",fontWeight:"bold" }}>
+            Are you sure you want to logout
+          </span>
+        </div>
+        <div className="h-50 d-flex justify-content-around align-items-center">
+          <Button
+            className="w-25"
+            variant="primary"
+            size="lg"
+            onClick={logoutAction}
+          >
+            Logout
+          </Button>
+          <Button
+            className="w-25"
+            variant="secondary"
+            size="lg"
+            onClick={closeModal}
+          >
+            Cancel
+          </Button>
         </div>
       </Modal>
     </div>
