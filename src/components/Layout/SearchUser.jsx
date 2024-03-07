@@ -2,7 +2,8 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import RenderTooltips from "../RenderTooltips";
-import SideDrawer from "./SideDrawer";
+import Offcanvas from "react-bootstrap/Offcanvas";
+
 const SearchUser = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -43,11 +44,17 @@ const SearchUser = () => {
           </button>
         </OverlayTrigger>
       </div>
-      <SideDrawer
-        handleClose={handleClose}
-        handleShow={handleShow}
-        show={show}
-      />
+
+      <Offcanvas show={show} onHide={handleClose}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          Some text as placeholder. In real life you can have the elements you
+          have chosen. Like, text, images, lists, etc.
+        </Offcanvas.Body>
+      </Offcanvas>
+
     </>
   );
 };
