@@ -5,6 +5,7 @@ import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../features/featureActions/Actions";
 import { MdCancel } from "react-icons/md";
+import {persistor} from "../../app/Store"
 const customStyles = {
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)'
@@ -40,6 +41,11 @@ const Logout = ({type,componentStyle}) => {
       isToast:true
     }
     dispatch(logoutUser(payload))
+    persistor.purge().then(() => { 
+      console.log('Persisted storage cleared successfully');
+  }).catch((error) => {
+      console.log('Error occurred while clearing persisted storage:', error);
+  });
    }catch (rejectedValueOrSerializedError) {
     console.log(rejectedValueOrSerializedError)
   }

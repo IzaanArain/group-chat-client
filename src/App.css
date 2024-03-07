@@ -38,5 +38,25 @@
 }
 
 
+#chatScroll{
+    overflow-y: scroll;
+    height: 85%;
+}
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+#chatScroll::-webkit-scrollbar {
+    display: none;
+}
 
+/* Hide scrollbar for IE, Edge and Firefox */
+#chatScroll {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+#userItem{
+    background-color: #e2e3e5;
+}
+#userItem:hover{
+ color: white;
+ background-color: teal;
+}

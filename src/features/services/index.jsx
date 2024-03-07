@@ -27,3 +27,28 @@ export const postRequest=(apiEndpoint,thunkName)=>{
         }
     )
 }
+
+export const getRequest = (apiEndpoint,thunkName)=>{
+    return createAsyncThunk(
+        thunkName,
+        async({params,isToast},{rejectWithValue})=>{
+            try{
+            const endpoint = params ? `${apiEndpoint}${params}` : apiEndpoint;
+            console.log("endpoint",endpoint)
+            const res = await axios.get(endpoint);
+            if (isToast) {
+                toast.success(res?.data?.message);
+            }
+            return res
+            }catch(error){
+                if(isToast){
+                    console.log("get request",error?.response)
+                    toast.error(error?.response?.data?.message,{
+                        position: "top-left",
+                    })
+                }
+                return rejectWithValue(error?.response);
+            }
+        }
+    )
+}
