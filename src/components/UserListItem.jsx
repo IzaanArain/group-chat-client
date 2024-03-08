@@ -28,7 +28,7 @@ const UserListItem = ({ user }) => {
             // width={100}
             //  className="rounded-circle"
             // roundedCircle
-            // style={{ width: "100%", height: "100%" }}
+            style={{ width: "100%", height: "100%" }}
             className="rounded-circle"
           />
         </div>
