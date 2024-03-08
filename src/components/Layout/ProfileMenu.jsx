@@ -33,13 +33,17 @@ const ProfileMenu = () => {
                   as="h3"
                   className="py-3 d-flex align-items-center justify-content-center"
                 >
-                  <Image
-                    src={`${import.meta.env.VITE_API_URL}/${user.profileImage}`}
-                    alt=""
-                    width={"100px"}
-                    height={"100px"}
-                    roundedCircle
-                  />
+                <div style={{width:"100px",height:"100px"}}>
+               <Image 
+                src={`${import.meta.env.VITE_API_URL}/${user.profileImage}`}
+                alt=""
+                // width={"30px"}
+                // height={"30px"}
+                style={{ width: "100%", height: "100%" }}
+                //  className="rounded-circle"
+                roundedCircle
+              />
+             </div>
                   <span className="ps-3">{user.name}</span>
                 </Popover.Header>
                 <Popover.Body>
@@ -50,16 +54,19 @@ const ProfileMenu = () => {
             }
           >
             {({ ref, ...triggerHandler }) => (
-              <Image
+             <div style={{width:"30px",height:"30px"}}>
+               <Image 
                 ref={ref}
                 src={`${import.meta.env.VITE_API_URL}/${user.profileImage}`}
                 alt=""
-                width={"30px"}
-                height={"30px"}
+                // width={"30px"}
+                // height={"30px"}
+                style={{ width: "100%", height: "100%" }}
                 //  className="rounded-circle"
                 roundedCircle
                 {...triggerHandler}
               />
+             </div>
             )}
           </OverlayTrigger>
         </div>
