@@ -31,11 +31,11 @@ export const postRequest=(apiEndpoint,thunkName)=>{
 export const getRequest = (apiEndpoint,thunkName)=>{
     return createAsyncThunk(
         thunkName,
-        async({params,isToast},{rejectWithValue})=>{
+        async({params,query,isToast},{rejectWithValue})=>{
             try{
+            console.log(params)
             const endpoint = params ? `${apiEndpoint}${params}` : apiEndpoint;
-            console.log("endpoint",endpoint)
-            const res = await axios.get(endpoint);
+            const res = await axios.get(endpoint,{params:query});
             if (isToast) {
                 toast.success(res?.data?.message);
             }

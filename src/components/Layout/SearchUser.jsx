@@ -32,12 +32,15 @@ const SearchUser = () => {
       try {
         let payload = {
           params: false,
+          query:{
+            search:search
+          },
           isToast: false,
         };
         const res = await dispatch(getAllUsers(payload)).unwrap();
         setUser(res?.data?.data);
       } catch (rejectedValueOrSerializedError) {
-        // console.log(rejectedValueOrSerializedError)
+        console.log(rejectedValueOrSerializedError)
       }
     }
   };
