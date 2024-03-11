@@ -35,7 +35,8 @@ const SearchUser = () => {
           query:{
             search:search
           },
-          isToast: false,
+          // query:null,
+          isToast: true,
         };
         const res = await dispatch(getAllUsers(payload)).unwrap();
         setUser(res?.data?.data);
@@ -44,6 +45,7 @@ const SearchUser = () => {
       }
     }
   };
+
   return (
     <>
       <div>

@@ -3,12 +3,14 @@ import userReducer from "../features/slices/AuthSlice"
 import persistConfig from "./index";
 import { persistStore, persistReducer } from 'redux-persist';
 import axios from "axios";
+import ChatReducer from "../features/slices/ChatSlice";
 // import thunk from 'redux-thunk';
 
 const persistedUser=persistReducer(persistConfig,userReducer);
 
 const rootReducer=combineReducers({
-  auth:persistedUser
+  auth:persistedUser,
+  chat:ChatReducer
 });
 
 const store=configureStore({

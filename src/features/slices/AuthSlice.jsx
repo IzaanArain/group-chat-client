@@ -30,7 +30,7 @@ const authSlice = createSlice({
           state.isError = false;
           switch (action.type) {
             default:
-              console.log("Unknown action/pending");
+              // console.log("Unknown action/pending");
               break;
           }
         }
@@ -57,7 +57,7 @@ const authSlice = createSlice({
               state.user = null;
               break;
             default:
-              console.log("Unknown action/fulfilled");
+              // console.log("Unknown action/fulfilled");
               break;
           }
         }
@@ -73,7 +73,7 @@ const authSlice = createSlice({
           } else {
             switch (action.type) {
               default:
-                console.log("Unknown action/rejected");
+                // console.log("Unknown action/rejected");
                 break;
             }
           }

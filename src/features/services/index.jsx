@@ -33,7 +33,6 @@ export const getRequest = (apiEndpoint,thunkName)=>{
         thunkName,
         async({params,query,isToast},{rejectWithValue})=>{
             try{
-            console.log(params)
             const endpoint = params ? `${apiEndpoint}${params}` : apiEndpoint;
             const res = await axios.get(endpoint,{params:query});
             if (isToast) {

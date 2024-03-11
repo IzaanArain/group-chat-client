@@ -1,23 +1,33 @@
 import React from "react";
 import { Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-
-const UserListItem = ({ user }) => {
+import { initiateChat } from "../features/featureActions/Actions";
+const UserListItem = ({ user}) => {
   const { isLoading } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-  const initiateChat = (e) => {
-    e.preventDefault()
-    try{
-
-    }catch(rejectedValueOrSerializedError){
-
+  const initiateChatOnClick = async() => {
+    try {
+      let payload = {
+        params: false,
+        body: {
+          receiverId: user._id,
+        },
+        isToast: true,
+      };
+      dispatch(initiateChat(payload))
+      // const res = await dispatch(initiateChat(payload)).unwrap();
+    } catch (rejectedValueOrSerializedError) {
+      console.log(rejectedValueOrSerializedError);
     }
   };
+
   return (
     <>
       <div
         className="d-flex align-items-center px-2 py-3 mb-3 rounded"
         id="userItem"
+        onClick={initiateChatOnClick}
       >
         {/*  bg-secondary-subtle */}
         <div style={{ width: "50px", height: "50px" }}>
