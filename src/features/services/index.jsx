@@ -19,7 +19,7 @@ export const postRequest=(apiEndpoint,thunkName)=>{
                 if(isToast){
                     console.log("post request",error?.response)
                     toast.error(error?.response?.data?.message,{
-                        // position: toast.POSITION.TOP_RIGHT,
+                        position: "top-left",
                     })
                 }
                 return rejectWithValue(error?.response);

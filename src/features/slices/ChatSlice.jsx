@@ -17,19 +17,19 @@ const groupChatSlice = createSlice({
     builder
       .addMatcher(
         (action) => action.type.endsWith("/pending"),
-        (action, state) => {
+        (state,action) => {
           state.isLoading = true;
           state.isError = false;
           switch (action.type) {
             default:
-              console.log("Unknown action/pending");
+              // console.log("Unknown action/pending");
               break;
           }
         }
       )
       .addMatcher(
         (action) => {
-          console.log(action.type);
+          // console.log(action.type);
           return action.type.endsWith("/fulfilled")
         },
         (state,action) => {
@@ -41,14 +41,14 @@ const groupChatSlice = createSlice({
               state.chats = action.payload.data.data;
               break;
             default:
-              console.log("Unknown action/fulfilled");
+              // console.log("Unknown action/fulfilled");
               break;
           }
         }
       )
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
-        (action, state) => {
+        (state,action) => {
           state.isError = true;
           state.isLoading = false;
           if (action.payload.status == 401) {
@@ -56,7 +56,7 @@ const groupChatSlice = createSlice({
           } else {
             switch (action.type) {
               default:
-                console.log("Unknown action/rejected");
+                // console.log("Unknown action/rejected");
                 break;
             }
           }
