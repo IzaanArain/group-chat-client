@@ -4,19 +4,14 @@ import Placeholder from 'react-bootstrap/Placeholder';
 const ChatLoading = () => {
   return (
    <>
-   <div className='py-3'>
-    <Placeholder className="w-100 mb-3 rounded" size="lg" style={{height:"45px"}}/>
-    <Placeholder className="w-100 mb-3 rounded" size="lg" style={{height:"45px"}}/>
-    <Placeholder className="w-100 mb-3 rounded" size="lg" style={{height:"45px"}}/>
-    <Placeholder className="w-100 mb-3 rounded" size="lg" style={{height:"45px"}}/>
-    <Placeholder className="w-100 mb-3 rounded" size="lg" style={{height:"45px"}}/>
-    <Placeholder className="w-100 mb-3 rounded" size="lg" style={{height:"45px"}}/>
-    <Placeholder className="w-100 mb-3 rounded" size="lg" style={{height:"45px"}}/>
-    <Placeholder className="w-100 mb-3 rounded" size="lg" style={{height:"45px"}}/>
-    <Placeholder className="w-100 mb-3 rounded" size="lg" style={{height:"45px"}}/>
-    <Placeholder className="w-100 mb-3 rounded" size="lg" style={{height:"45px"}}/>
-    <Placeholder className="w-100 mb-3 rounded" size="lg" style={{height:"45px"}}/>
-    <Placeholder className="w-100 mb-3 rounded" size="lg" style={{height:"45px"}}/>
+   <div className=''>
+    <Placeholder className="px-2 py-3 mb-3 w-100 rounded" size="lg" style={{height:"82px"}}/>
+    <Placeholder className="px-2 py-3 mb-3 w-100 rounded" size="lg" style={{height:"82px"}}/>
+    <Placeholder className="px-2 py-3 mb-3 w-100 rounded" size="lg" style={{height:"82px"}}/>
+    <Placeholder className="px-2 py-3 mb-3 w-100 rounded" size="lg" style={{height:"82px"}}/>
+    <Placeholder className="px-2 py-3 mb-3 w-100 rounded" size="lg" style={{height:"82px"}}/>
+    <Placeholder className="px-2 py-3 mb-3 w-100 rounded" size="lg" style={{height:"82px"}}/>
+    <Placeholder className="px-2 py-3 mb-3 w-100 rounded" size="lg" style={{height:"82px"}}/>
    </div>
    </>
   )

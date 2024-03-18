@@ -5,7 +5,7 @@ const initialState = {
   isError: false,
   status: null,
   groups: [],
-  chats: null,
+  chats: [],
   messages: [],
 };
 
@@ -29,7 +29,6 @@ const groupChatSlice = createSlice({
       )
       .addMatcher(
         (action) => {
-          // console.log(action.type);
           return action.type.endsWith("/fulfilled")
         },
         (state,action) => {
@@ -38,7 +37,14 @@ const groupChatSlice = createSlice({
           state.status = null;
           switch (action.type) {
             case "initiateChat/fulfilled":
-              state.chats = action.payload.data.data;
+             const chatIds=state.chats.map((chat)=>chat._id);
+             const chat=action.payload.data.data
+             if(!chatIds.includes(chat._id)){
+              state.chats.push(action.payload.data.data);
+             }
+              break;
+            case "getAllChats/fulfilled":
+              state.chats = action.payload.data.data.chats
               break;
             default:
               // console.log("Unknown action/fulfilled");
@@ -65,4 +71,5 @@ const groupChatSlice = createSlice({
   },
 });
 
+export const getChatList = (state)=>state?.chat?.chats
 export default groupChatSlice.reducer;

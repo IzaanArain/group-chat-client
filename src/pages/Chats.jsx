@@ -6,16 +6,16 @@ import ChatInfo from "../components/Chat/ChatInfo";
 const Chats = () => {
   return (
     <>
-      <div style={{ width: "100%" }}>
-        <Container fluid>
-          <Row>
-            <Col>
+      <div>
+        <Container fluid >
+          <Row className="py-2">
+            <Col md={3}>
               <ChatList />
             </Col>
-            <Col>
+            <Col md={6}>
               <ChatBox />
             </Col>
-            <Col>
+            <Col md={3}>
               <ChatInfo />
             </Col>
           </Row>

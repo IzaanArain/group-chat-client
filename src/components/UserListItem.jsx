@@ -2,8 +2,10 @@ import React from "react";
 import { Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { initiateChat } from "../features/featureActions/Actions";
+import LoadingSpinner from "../components/LoadingSpinner";
+
 const UserListItem = ({ user}) => {
-  const { isLoading } = useSelector((state) => state.auth);
+  const { isLoading } = useSelector((state) => state?.chat);
   const dispatch = useDispatch();
 
   const initiateChatOnClick = async() => {
@@ -47,6 +49,9 @@ const UserListItem = ({ user}) => {
           <span className="ps-4">
             <b>Email:</b> {user.email}
           </span>
+        </div>
+        <div className="ps-5">
+        {isLoading ? <LoadingSpinner/> : null }
         </div>
       </div>
     </>

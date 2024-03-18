@@ -24,18 +24,18 @@ const SearchUser = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault()
-    if (!search) {
-      toast.error("Please Enter something in search", {
-        position: "top-right",
-      });
-    } else {
+    // if (!search) {
+    //   toast.error("Please Enter something in search", {
+    //     position: "top-right",
+    //   });
+    // } else {
       try {
         let payload = {
           params: false,
           query:{
             search:search
           },
-          // query:null,
+          // query:false,
           isToast: true,
         };
         const res = await dispatch(getAllUsers(payload)).unwrap();
@@ -43,7 +43,7 @@ const SearchUser = () => {
       } catch (rejectedValueOrSerializedError) {
         console.log(rejectedValueOrSerializedError)
       }
-    }
+    // }
   };
 
   return (
@@ -107,7 +107,8 @@ const SearchUser = () => {
               <ChatLoading/>
               </>
             ) : (
-              users.map((user,i) => {
+              <>
+              {users.map((user,i) => {
                 return (
                   <Fragment key={i}>
                     <UserListItem 
@@ -115,7 +116,8 @@ const SearchUser = () => {
                     />
                   </Fragment>
                 )
-              })
+              })}
+              </>
             )}
           </div>
         </Offcanvas.Body>

@@ -23,9 +23,9 @@ const store=configureStore({
 export const persistor = persistStore(store);
 export default store;
 
-persistor.subscribe(()=>{
+persistor.subscribe(() => {
   const persistedState = store.getState();
-  const {user}=persistedState?.auth || {};
+  const { user } = persistedState?.auth || {};
   // console.log("persistedState",user);
-  axios.defaults.headers.common.Authorization=user?.token
-})
+  axios.defaults.headers.common.Authorization = user?.token;
+});

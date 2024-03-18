@@ -34,7 +34,7 @@ export const getRequest = (apiEndpoint,thunkName)=>{
         async({params,query,isToast},{rejectWithValue})=>{
             try{
             const endpoint = params ? `${apiEndpoint}${params}` : apiEndpoint;
-            const res = await axios.get(endpoint,{params:query});
+            const res = await axios.get(endpoint, {params: query ? query : null});
             if (isToast) {
                 toast.success(res?.data?.message);
             }
