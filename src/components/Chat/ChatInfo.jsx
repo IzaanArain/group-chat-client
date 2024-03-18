@@ -2,7 +2,7 @@ import React from 'react'
 
 const ChatInfo = () => {
   return (
-    <div>ContactInfo</div>
+    <div className='bg-primary rounded'>ContactInfo</div>
   )
 }
 

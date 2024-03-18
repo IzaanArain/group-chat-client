@@ -2,7 +2,7 @@ import React from 'react'
 
 const ChatBox = () => {
   return (
-    <div>ChatBox</div>
+    <div className='bg-primary rounded'>ChatBox</div>
   )
 }
 

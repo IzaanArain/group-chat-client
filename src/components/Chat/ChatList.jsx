@@ -34,7 +34,7 @@ const ChatList = () => {
   return (
     <>
     <div className="d-flex flex-column align-items-center bg-primary rounded"
-    style={{height:"80vh"}}
+    // style={{height:"80vh"}}
     >
       <div className="w-100 ps-4">
         <span>My chats</span>

@@ -12,6 +12,7 @@ import UserListItem from "../UserListItem";
 const SearchUser = () => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.auth);
+  console.log(isLoading)
   const [search, setSearch] = useState("");
   const [users, setUser] = useState([]);
   const [show, setShow] = useState(false);
@@ -24,11 +25,11 @@ const SearchUser = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault()
-    // if (!search) {
-    //   toast.error("Please Enter something in search", {
-    //     position: "top-right",
-    //   });
-    // } else {
+    if (!search) {
+      toast.error("Please Enter something in search", {
+        position: "top-right",
+      });
+    } else {
       try {
         let payload = {
           params: false,
@@ -43,7 +44,7 @@ const SearchUser = () => {
       } catch (rejectedValueOrSerializedError) {
         console.log(rejectedValueOrSerializedError)
       }
-    // }
+    }
   };
 
   return (
