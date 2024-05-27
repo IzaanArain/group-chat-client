@@ -3,6 +3,7 @@ import { Container, Col, Row } from "react-bootstrap";
 import ChatList from "../components/Chat/ChatList";
 import ChatBox from "../components/Chat/ChatBox";
 import ChatInfo from "../components/Chat/ChatInfo";
+
 const Chats = () => {
   return (
     <>

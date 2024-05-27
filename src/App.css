@@ -53,10 +53,17 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
 #userItem{
     background-color: #e2e3e5;
 }
 #userItem:hover{
  color: white;
  background-color: teal;
+}
+
+.chat-col{
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    background-color: white;
 }
