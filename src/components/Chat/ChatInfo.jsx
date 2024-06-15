@@ -2,7 +2,7 @@ import React from 'react'
 
 const ChatInfo = () => {
   return (
-    <div className='bg-primary rounded'>ContactInfo</div>
+    <div className='rounded shadow chat-col' id='chat-col'>ContactInfo</div>
   )
 }
 

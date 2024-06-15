@@ -15,7 +15,7 @@ const groupChatSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addMatcher(
+      .addMatcher (
         (action) => action.type.endsWith("/pending"),
         (state,action) => {
           state.isLoading = true;
@@ -27,7 +27,7 @@ const groupChatSlice = createSlice({
           }
         }
       )
-      .addMatcher(
+      .addMatcher (
         (action) => {
           return action.type.endsWith("/fulfilled")
         },
@@ -52,7 +52,7 @@ const groupChatSlice = createSlice({
           }
         }
       )
-      .addMatcher(
+      .addMatcher (
         (action) => action.type.endsWith("/rejected"),
         (state,action) => {
           state.isError = true;
@@ -70,6 +70,6 @@ const groupChatSlice = createSlice({
       );
   },
 });
-
+    
 export const getChatList = (state)=>state?.chat?.chats
 export default groupChatSlice.reducer;

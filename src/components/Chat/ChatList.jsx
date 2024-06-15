@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect,Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllChats } from "../../features/featureActions/Actions";
 import { getChatList } from "../../features/slices/ChatSlice";
-
+import { IoIosAddCircleOutline } from "react-icons/io";
 const ChatList = () => {
   const dispatch = useDispatch();
   const chatsData = useSelector(getChatList);
@@ -31,14 +31,28 @@ const ChatList = () => {
     };
   }, []);
 
+  console.log(chatsData)
   return (
     <>
-    <div className="d-flex flex-column align-items-center bg-primary rounded"
-    // style={{height:"80vh"}}
-    >
-      <div className="w-100 ps-4">
-        <span>My chats</span>
+    <div className="d-flex flex-column align-items-center rounded shadow chat-col" id="">
+      <div className="w-100 px-4 pt-4 d-flex justify-content-between align-items-center">
+      <span style={{fontSize:"28px"}}>My chats</span>
+      <button className="btn btn-secondary d-flex align-items-center">
+        New group chat
+        <IoIosAddCircleOutline style={{fontSize:"25px"}} className="ms-2"/>
+      </button>
       </div>
+       <div className="w-100 px-4">
+       {chatsData.map((chat,i)=>{
+          return (
+            <Fragment key={i}>
+              <div>
+              {/* <span>{chat._id}</span> */}
+              </div>
+            </Fragment>
+          )
+        })}
+       </div>
     </div>
     </>
   );
