@@ -9,13 +9,13 @@ const Chats = () => {
       <div>
         <Container fluid >
           <Row className="py-2">
-            <Col md={3}>
+            <Col sm={3}>
               <ChatList />
             </Col>
-            <Col md={6}>
+            <Col sm={6}>
               <ChatBox />
             </Col>
-            <Col md={3}>
+            <Col sm={3}>
               <ChatInfo />
             </Col>
           </Row>
