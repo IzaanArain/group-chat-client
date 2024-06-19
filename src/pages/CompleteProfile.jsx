@@ -35,10 +35,11 @@ const CompleteProfile = () => {
   const SubmitForm = async (values, { resetForm }) => {
     try {
       // Extracting the address value
-      const selectedAddress = values?.address?.label;
+      // const selectedAddress = values?.address?.label;
       // Extracting the address lat long
-      const results = await geocodeByAddress(selectedAddress);
-      const { lat, lng } = await getLatLng(results[0]);
+      // const results = await geocodeByAddress(selectedAddress);
+      // const { lat, lng } = await getLatLng(results[0]);
+      console.log(values)
       var formData = new FormData();
       const appendIfValue = (key, value) => {
         if (value !== undefined && value.trim() !== "") {
@@ -47,10 +48,11 @@ const CompleteProfile = () => {
       };
       appendIfValue("name", values.name);
       appendIfValue("phone", values.phone);
+      appendIfValue("address",values.address)
       // appendIfValue("_id",userId);
-      appendIfValue("address", selectedAddress);
-      formData.append("lat", lat);
-      formData.append("long", lng);
+      // appendIfValue("address", selectedAddress);
+      // formData.append("lat", lat);
+      // formData.append("long", lng);
       // formData.append("profileImage",values.image)
       if (values?.image?.length >= 1) {
         values.image.forEach((img) => {
@@ -295,20 +297,13 @@ const CompleteProfile = () => {
                                   Address
                                 </Form.Label>
                                 <div className="d-flex align-items-center justify-content-between">
-                                  <InputGroup
-                                    hasValidation
-                                    id={
-                                      errors.address && touched.address
-                                        ? "addressError"
-                                        : null
-                                    }
-                                  >
-                                    {/* <Form.Control
+                                  <InputGroup hasValidation>
+                                    <Form.Control
                                     type="text"
                                     placeholder="Please enter your address"
                                     aria-describedby="inputGroupAddress"
                                     name="address"
-                                    value={values.address}
+                                    value={values.address.label}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     isInvalid={
@@ -317,8 +312,8 @@ const CompleteProfile = () => {
                                   />
                                   <Form.Control.Feedback type="invalid">
                                     {errors.address}
-                                  </Form.Control.Feedback> */}
-                                    <GooglePlacesAutocomplete
+                                  </Form.Control.Feedback>
+                                    {/* <GooglePlacesAutocomplete
                                       apiKey={import.meta.env.VITE_API_KEY}
                                       selectProps={{
                                         values,
@@ -341,17 +336,17 @@ const CompleteProfile = () => {
                                         },
                                       }}
                                       onBlur={handleBlur}
-                                    />
+                                    /> */}
                                   </InputGroup>
-                                  {errors.address && touched.address ? (
+                                  {/* {errors.address && touched.address ? (
                                     <AiOutlineExclamationCircle className=" fs-1 mx-2 text-end text-danger" />
-                                  ) : null}
+                                  ) : null} */}
                                 </div>
-                                {touched.address && errors.address ? (
+                                {/* {touched.address && errors.address ? (
                                   <Form.Text className="text-danger">
                                     {errors.address}
                                   </Form.Text>
-                                ) : null}
+                                ) : null} */}
                               </Form.Group>
                             </Row>
                             <Row className="mb-4 px-4">

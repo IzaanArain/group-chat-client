@@ -10,13 +10,13 @@ const Chats = () => {
       <div>
         <Container fluid >
           <Row className="py-2">
-            <Col sm={3}>
+            <Col sm={12} md={3} className="mb-3">
               <ChatList />
             </Col>
-            <Col sm={6}>
+            <Col sm={12} md={6} className="mb-3">
               <ChatBox />
             </Col>
-            <Col sm={3}>
+            <Col sm={12} md={3} className="mb-3">
               <ChatInfo />
             </Col>
           </Row>
