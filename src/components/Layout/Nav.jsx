@@ -4,7 +4,8 @@ import ProfileMenu from "./ProfileMenu";
 const Nav = () => {
   return (
     <>
-      <div className="shadow py-2 d-flex justify-content-between align-items-center w-100 px-5 bg-white border border-3 border-secondary-subtle">
+      <div className="chat-Navbar shadow py-2 d-flex justify-content-between align-items-center w-100 px-5 bg-white  border-secondary-subtle">
+        {/* border border-3 */}
         <SearchUser />
         <span
           style={{
@@ -15,7 +16,7 @@ const Nav = () => {
         >
           Group-Chat
         </span>
-        <ProfileMenu/>
+        <ProfileMenu />
       </div>
     </>
   );

@@ -7,16 +7,16 @@ import ChatInfo from "../components/Chat/ChatInfo";
 const Chats = () => {
   return (
     <>
-      <div>
+      <div className="chat-page">
         <Container fluid >
-          <Row className="py-2">
-            <Col sm={12} md={3} className="mb-3">
+          <Row>
+            <Col sm={12} md={6} lg={3} className="mb-3">
               <ChatList />
             </Col>
-            <Col sm={12} md={6} className="mb-3">
+            <Col sm={12} md={6} lg={6} className="mb-3">
               <ChatBox />
             </Col>
-            <Col sm={12} md={3} className="mb-3">
+            <Col sm={12} md={12} lg={3} className="mb-3">
               <ChatInfo />
             </Col>
           </Row>
