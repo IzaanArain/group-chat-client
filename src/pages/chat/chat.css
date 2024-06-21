@@ -1,0 +1,28 @@
+.chat-page{
+    padding: 10px 0 ;
+    /* height: calc(100vh - 100px); */
+    /* display: flex; */
+    /* column-gap: 15px; */
+}
+.chat-col{
+    height: calc(100vh - 100px);
+    background: white;
+    border-radius: 10px;
+    -webkit-box-shadow: 5px 13px 11px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 13px 11px 5px rgba(0, 0, 0, 0.2);
+}
+
+.chat-list {
+    /* flex: 3; */
+    overflow-y: auto;
+   
+}
+
+.Chat-info {
+    /* flex: 3; */
+}
+
+.chat-box {
+    /* flex: 6; */
+}
+

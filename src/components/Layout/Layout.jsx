@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
 import Home from "../../pages/Home";
-import Chats from "../../pages/Chats";
+import Chats from "../../pages/chat/Chats";
 import CompleteProfile from "../../pages/CompleteProfile";
 import VerifyAccount from "../../pages/VerifyAccount";
 import { useSelector } from "react-redux";

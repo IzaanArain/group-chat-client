@@ -4,11 +4,10 @@ import { getAllChats } from "../../features/featureActions/Actions";
 import { getChatList } from "../../features/slices/ChatSlice";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import ChatListItem from "./ChatListItem";
+
 const ChatList = () => {
   const dispatch = useDispatch();
   const chatsData = useSelector(getChatList);
-  // console.log("chatsData", chatsData);
-
   const fetchChats = async () => {
     try {
       const payload = {
@@ -32,10 +31,9 @@ const ChatList = () => {
     };
   }, []);
 
-  console.log(chatsData)
   return (
     <>
-    <div className="d-flex flex-column align-items-center rounded shadow chat-col" id="">
+    <div className="chat-list chat-col" >
       <div className="w-100 px-4 pt-4 d-flex justify-content-between align-items-center mb-3">
       <span style={{fontSize:"28px"}}>My chats</span>
       <button className="btn btn-secondary d-flex align-items-center">

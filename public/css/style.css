@@ -3,10 +3,11 @@
 .App{
     background-color: azure;
     min-height: 100vh;
-    /* display: flex; */
-    /* justify-content: center; */
 }
 
+.css-b62m3t-container{
+    width: 100%;
+}
 .chat-Navbar{
     height: 50px;
 }
@@ -42,9 +43,6 @@
     border-radius: 0.3rem;
 }
 
-.chat-page{
-    padding: 10px 0px ;
-}
 #chatScroll{
     overflow-y: scroll;
     height: 85%;
@@ -67,10 +65,4 @@
 #userItem:hover{
  color: white;
  background-color: teal;
-}
-
-.chat-col{
-    height: calc(100vh - 100px);
-    overflow-y: auto;
-    background-color: white;
 }
