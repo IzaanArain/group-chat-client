@@ -33,7 +33,7 @@ const ChatList = () => {
 
   return (
     <>
-    <div className="chat-list chat-col" >
+    <div className="chat-col mychat" >
       <div className="w-100 px-4 pt-4 d-flex justify-content-between align-items-center mb-3">
       <span style={{fontSize:"28px"}}>My chats</span>
       <button className="btn btn-secondary d-flex align-items-center">
@@ -41,7 +41,8 @@ const ChatList = () => {
         <IoIosAddCircleOutline style={{fontSize:"25px"}} className="ms-2"/>
       </button>
       </div>
-       <div className="w-100 px-4 d-flex flex-column">
+       <div className="chat-list">
+        {/* w-100 px-4 d-flex flex-column  */}
        {chatsData.map((chat,i)=>{
           return (
             <Fragment key={i}>
