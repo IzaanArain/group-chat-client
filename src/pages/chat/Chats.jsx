@@ -16,12 +16,10 @@ const Chats = () => {
       <div className="container-fluid">
         <div className="chat-page">
           <div className="row  gy-3">
-            <div className="col-lg-3 col-md-6">
-              {/* "d-none d-lg-block" on chat selection*/}
+            <div className="col-lg-3 col-md-12">
               <ChatList />
             </div>
-            <div className="col-lg-6 col-md-6">
-              {/* col-md-12 */}
+            <div className="col-lg-6 d-none d-lg-block">
               <ChatBox />
             </div>
             <div className="col-lg-3 d-none d-lg-block">
