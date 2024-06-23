@@ -14,7 +14,7 @@ import { createGroup } from "../../../features/featureActions/Actions";
 
 function CreateGroupChat() {
   const [show, setShow] = useState(false);
-  const [groupChatName, setGroupChatName] = useState();
+  const [groupChatName, setGroupChatName] = useState("");
   const [selectedUsers, setselectedUsers] = useState([]);
   const [search, setSearch] = useState();
   const [searchResult, setSearchResult] = useState([]);
@@ -22,6 +22,7 @@ function CreateGroupChat() {
   const dispatch = useDispatch();
   const handleClose = () => {
     setShow(false);
+    setGroupChatName("")
     setSearchResult([]);
     setselectedUsers([]);
   };
