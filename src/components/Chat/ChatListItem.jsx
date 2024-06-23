@@ -3,13 +3,19 @@ import { Card, Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import defaultImage from "../../assets/default-image.jpg";
 import { getUser } from "../../features/slices/AuthSlice";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { selectChat } from "../../features/slices/ChatSlice";
 const ChatListItem = ({ chat: { _id, users, groupImage,isGroupChat,groupName,latestMessage } }) => {
+  const dispatch = useDispatch()
   const user = useSelector(getUser);
   const receiver = isGroupChat === 0 ? users?.find((ele)=>ele._id !== user._id) : null;
+  const handleSelectChat = (e)=>{
+    e.preventDefault();
+    dispatch(selectChat(true));
+  }
   return (
     <>
-      <div className="chat-item">
+      <div className="chat-item" onClick={handleSelectChat}>
       <Card style={{height:"100%",width:"100%"}}>
         <Container fluid>
           <Row>

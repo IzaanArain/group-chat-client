@@ -43,3 +43,8 @@
 .chat-item{
     margin-bottom: 15px;
 }
+
+.chat-item:hover{
+   border: 3px solid teal;
+   border-radius: 9px;
+}

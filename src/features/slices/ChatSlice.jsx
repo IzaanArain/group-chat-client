@@ -6,13 +6,18 @@ const initialState = {
   status: null,
   groups: [],
   chats: [],
+  selectedChat:false,
   messages: [],
 };
 
 const groupChatSlice = createSlice({
   name: "chat",
   initialState,
-  reducers: {},
+  reducers: {
+    selectChat:(state,action)=>{
+      state.selectedChat = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addMatcher (
@@ -73,6 +78,8 @@ const groupChatSlice = createSlice({
       );
   },
 });
-    
+
+export const {selectChat} = groupChatSlice.actions;
+export const getSelectedChat = (state)=> state?.chat?.selectedChat
 export const getChatList = (state)=>state?.chat?.chats
 export default groupChatSlice.reducer;
