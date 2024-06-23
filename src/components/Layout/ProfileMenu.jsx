@@ -11,7 +11,7 @@ import { OverlayTrigger } from "react-bootstrap";
 import RenderTooltips from "../RenderTooltips";
 import PopoverTooltips from "../PopoverTooltips";
 import Popover from "react-bootstrap/Popover";
-import Logout from "../Modal/Logout";
+import Logout from "../Modal/logout/Logout";
 const ProfileMenu = () => {
   const user = useSelector(getUser);
   return (

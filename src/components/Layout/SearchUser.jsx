@@ -8,11 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../features/featureActions/Actions";
 import ChatLoading from "../Chat/ChatLoading";
 import UserListItem from "../UserListItem";
-
+import { initiateChat } from "../../features/featureActions/Actions";
 const SearchUser = () => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.auth);
-  console.log(isLoading)
+  // console.log(isLoading)
   const [search, setSearch] = useState("");
   const [users, setUser] = useState([]);
   const [show, setShow] = useState(false);
@@ -20,7 +20,7 @@ const SearchUser = () => {
     setUser([]);
     setSearch("")
     setShow(false);
-  }
+  };
   const handleShow = () => setShow(true);
 
   const handleSearch = async (e) => {
@@ -44,6 +44,22 @@ const SearchUser = () => {
       } catch (rejectedValueOrSerializedError) {
         console.log(rejectedValueOrSerializedError)
       }
+    }
+  };
+
+  const initiateChatOnClick = async(user) => {
+    try {
+      let payload = {
+        params: false,
+        body: {
+          receiverId: user._id,
+        },
+        isToast: true,
+      };
+      dispatch(initiateChat(payload))
+      // const res = await dispatch(initiateChat(payload)).unwrap();
+    } catch (rejectedValueOrSerializedError) {
+      console.log(rejectedValueOrSerializedError);
     }
   };
 
@@ -114,6 +130,7 @@ const SearchUser = () => {
                   <Fragment key={i}>
                     <UserListItem 
                     user={user}
+                    handleFunction={initiateChatOnClick}
                     />
                   </Fragment>
                 )

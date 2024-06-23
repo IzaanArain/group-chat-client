@@ -7,7 +7,7 @@ export const completeUserProfile = postRequest("/user/completeProfile", "complet
 export const loginUser = postRequest("/user/signin", "signin");
 export const logoutUser = postRequest("/user/signout","signout");
 export const initiateChat = postRequest("/user/initiateChat","initiateChat");
-
+export const createGroup = postRequest("/user/createGroup","createGroup")
 //get Request
 export const getAllUsers = getRequest("/user/allUsers","getAllUsers");
 export const getAllChats = getRequest("/user/fetchChat","getAllChats");

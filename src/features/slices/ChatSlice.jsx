@@ -46,6 +46,9 @@ const groupChatSlice = createSlice({
             case "getAllChats/fulfilled":
               state.chats = action.payload.data.data.chats
               break;
+              case "createGroup/fulfilled":
+                state.chats.push(action.payload.data.data);
+                break;
             default:
               // console.log("Unknown action/fulfilled");
               break;

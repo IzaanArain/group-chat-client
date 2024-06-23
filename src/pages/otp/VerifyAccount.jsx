@@ -6,10 +6,10 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Card from "react-bootstrap/Card";
 import { Button } from "react-bootstrap";
-import { verifyUser } from "../features/featureActions/Actions";
+import { verifyUser } from "../../features/featureActions/Actions";
 import { useDispatch } from "react-redux";
 import { useLocation,useNavigate } from "react-router-dom";
-
+import './otp.css';
 const VerifyAccount = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const otpInputsRef = useRef([]);

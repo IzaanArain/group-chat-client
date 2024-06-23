@@ -11,7 +11,7 @@ const Nav = () => {
           style={{
             fontFamily: "Work sans",
             fontSize: "1.5rem",
-            fontWeight: "bold",
+            fontWeight: "500",
           }}
         >
           Group-Chat

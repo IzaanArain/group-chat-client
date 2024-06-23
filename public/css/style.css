@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 .App{
     background-color: azure;
     min-height: 100vh;
+    font-family: "Work sans",sans-serif;
 }
 
 .css-b62m3t-container{
@@ -12,36 +13,7 @@
     height: 50px;
 }
 
-.auth-section{
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    /* align-items: center; */
-    background-image:url('./src/assets/City_Landscape_Background.jpg') ;
-    background-size: cover;
-    background-position: center;
-    /* background-repeat: no-repeat; */
-}
-.otp-section{
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    /* align-items: center; */
-}
-#phoneInput{
-    border: 0.5px solid #E0E0E0;
-    border-radius: 0.3rem;
-}
 
-#phoneError{
-    border: 0.5px solid red;
-    border-radius: 0.3rem;
-}
-#addressError{
-    width: 90%;
-    border: 0.5px solid red;
-    border-radius: 0.3rem;
-}
 
 #chatScroll{
     overflow-y: scroll;
@@ -59,10 +31,12 @@
   scrollbar-width: none;  /* Firefox */
 }
 
-#userItem{
+.userItem{
     background-color: #e2e3e5;
+    height: 50px;
 }
-#userItem:hover{
+.userItem:hover{
  color: white;
  background-color: teal;
 }
+

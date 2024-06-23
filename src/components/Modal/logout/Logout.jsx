@@ -3,16 +3,17 @@ import Modal from "react-modal";
 import Card from 'react-bootstrap/Card';
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { logoutUser } from "../../features/featureActions/Actions";
+import { logoutUser } from "../../../features/featureActions/Actions";
 import { MdCancel } from "react-icons/md";
-import {persistor} from "../../app/Store"
+import {persistor} from "../../../app/Store"
+import "./logout.css"
 const customStyles = {
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)'
   },
   content: {
     width: '50%', // Adjust this value to your desired width
-    height: '20%', // Adjust this value to your desired height
+    height: '30%', // Adjust this value to your desired height
     top: "50%",
     left: "50%",
     right: "auto",

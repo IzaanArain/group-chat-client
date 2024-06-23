@@ -14,18 +14,32 @@
 
 .chat-list{
     padding: 0 10px;
-    /* overflow-y:scroll ; */
+    overflow-y:scroll ;
+    height: 80%;
 }
 
-.mychat {
-    /* flex: 3; */   
+::-webkit-scrollbar{
+    width: 5px;
+}
+::-webkit-scrollbar-track{
+    background-color:#f1f1f1 ;
+}
+
+::-webkit-scrollbar-thumb{
+   background-color: rgb(179, 179, 179);
+}
+/* .mychat {
+    flex: 3;   
 }
 
 .Chat-info {
-    /* flex: 3; */
+    flex: 3;
 }
 
 .chat-box {
-    /* flex: 6; */
-}
+    flex: 6;
+} */
 
+.chat-item{
+    margin-bottom: 15px;
+}

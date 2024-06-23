@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
 import Home from "../../pages/Home";
 import Chats from "../../pages/chat/Chats";
 import CompleteProfile from "../../pages/CompleteProfile";
-import VerifyAccount from "../../pages/VerifyAccount";
+import VerifyAccount from "../../pages/otp/VerifyAccount";
 import { useSelector } from "react-redux";
 import { getUser, getUserStatus } from "../../features/slices/AuthSlice";
 import Nav from "./Nav";

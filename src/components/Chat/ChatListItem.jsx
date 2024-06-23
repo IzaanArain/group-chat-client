@@ -9,27 +9,26 @@ const ChatListItem = ({ chat: { _id, users, groupImage,isGroupChat,groupName,lat
   const receiver = isGroupChat === 0 ? users?.find((ele)=>ele._id !== user._id) : null;
   return (
     <>
-      <div>
-      <Card className="mb-3">
-        <Container>
+      <div className="chat-item">
+      <Card style={{height:"100%",width:"100%"}}>
+        <Container fluid>
           <Row>
             <Col sm={3} className="d-flex align-items-center">
              <div 
              style={{width:"50px", height:"50px"}}
-             className="my-2"
              >
              <Card.Img
                 className="rounded-circle"
                 style={{ height: '100%', width: '100%' }}
                 src={
                   groupImage ? `${import.meta.env.VITE_API_URL}/${groupImage}`
-                    : receiver.profileImage ? `${import.meta.env.VITE_API_URL}/${receiver.profileImage}`
+                    : receiver?.profileImage ? `${import.meta.env.VITE_API_URL}/${receiver.profileImage}`
                     : defaultImage
                 }
               />
              </div>
             </Col>
-            <Col sm={9}>
+            <Col sm={9} className="d-flex align-items-center">
               <Card.Body>
                 {receiver ? (
                   <>

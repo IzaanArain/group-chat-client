@@ -4,35 +4,34 @@ import { useDispatch, useSelector } from "react-redux";
 import { initiateChat } from "../features/featureActions/Actions";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-const UserListItem = ({ user}) => {
+const UserListItem = ({ user,handleFunction}) => {
   const { isLoading } = useSelector((state) => state?.chat);
   const dispatch = useDispatch();
 
-  const initiateChatOnClick = async() => {
-    try {
-      let payload = {
-        params: false,
-        body: {
-          receiverId: user._id,
-        },
-        isToast: true,
-      };
-      dispatch(initiateChat(payload))
-      // const res = await dispatch(initiateChat(payload)).unwrap();
-    } catch (rejectedValueOrSerializedError) {
-      console.log(rejectedValueOrSerializedError);
-    }
-  };
+  // const initiateChatOnClick = async() => {
+  //   try {
+  //     let payload = {
+  //       params: false,
+  //       body: {
+  //         receiverId: user._id,
+  //       },
+  //       isToast: true,
+  //     };
+  //     dispatch(initiateChat(payload))
+  //     // const res = await dispatch(initiateChat(payload)).unwrap();
+  //   } catch (rejectedValueOrSerializedError) {
+  //     console.log(rejectedValueOrSerializedError);
+  //   }
+  // };
 
   return (
     <>
       <div
-        className="d-flex align-items-center px-2 py-3 mb-3 rounded"
-        id="userItem"
-        onClick={initiateChatOnClick}
+        className="userItem d-flex align-items-center px-2 py-3 mb-3 rounded"
+        onClick={()=>handleFunction(user)}
       >
         {/*  bg-secondary-subtle */}
-        <div style={{ width: "50px", height: "50px" }}>
+        <div style={{ width: "30px", height: "30px" }}>
           <img
             src={`${import.meta.env.VITE_API_URL}/${user.profileImage}`}
             alt=""
